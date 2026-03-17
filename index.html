@@ -790,8 +790,8 @@
     <div class="contact-inner">
       <h2>Travaillons ensemble</h2>
       <p>Vous avez un projet d'automatisation, un besoin d'intégration IA, ou vous cherchez quelqu'un pour concevoir des workflows intelligents ? Écrivez-moi.</p>
-      <a href="mailto:contact.9jared99@gmail.com" class="contact-link">
+      <button onclick="(function(btn){navigator.clipboard.writeText('contact.9jared99@gmail.com').then(function(){var s=btn.querySelector('.copy-label');s.textContent='Copié !';setTimeout(function(){s.textContent='contact.9jared99@gmail.com';},2000);});})(this)" class="contact-link" style="cursor:pointer;font-family:inherit;font-size:inherit;text-align:left;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-        contact.9jared99@gmail.com
+        <span class="copy-label">contact.9jared99@gmail.com</span>
         <span class="arrow">→</span>
    
