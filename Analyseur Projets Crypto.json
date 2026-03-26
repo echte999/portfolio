@@ -1,0 +1,1305 @@
+{
+  "name": "Analyseur Projets Crypto",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ed0621af-59b0-4d19-94b2-f125fc8674ba",
+              "name": "coinID",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "dea95332-81dd-4022-817c-78d100841939",
+              "name": "coin_name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "0c5bd8c6-eacd-4d6e-b747-0e1c80ff2225",
+              "name": "coin_symbol",
+              "value": "={{ $json.symbol }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -576,
+        1760
+      ],
+      "id": "73c6428b-da88-4837-9c47-aa3cea16b846",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "guildId": {
+          "__rl": true,
+          "value": "1473049852903555224",
+          "mode": "list",
+          "cachedResultName": "Defi master",
+          "cachedResultUrl": "https://discord.com/channels/1473049852903555224"
+        },
+        "channelId": {
+          "__rl": true,
+          "value": "1480835311876444325",
+          "mode": "list",
+          "cachedResultName": "🤖-bot-analyse",
+          "cachedResultUrl": "https://discord.com/channels/1473049852903555224/1480835311876444325"
+        },
+        "content": "=🤖 Analyse Crypto — __{{ $('Code in JavaScript7').item.json.coin_name }}__\n\nYo la commu ! 👋 Voici mon analyse du projet **{{ $('Code in JavaScript7').item.json.coin_name }}** — le rapport complet est dispo ici 📄\n\n⚠️ Disclaimer : Cette analyse est fournie à titre purement indicatif et ne constitue en aucun cas un conseil financier. DYOR 🔍 — fais toujours tes propres recherches avant d'investir, on est pas responsables de tes invests 😅\n\n⭐ Mon analyse : https://docs.google.com/document/d/{{ $('Upload file').item.json.id }}/edit\n\n📊 Bonne lecture à tous ! 🚀🌙",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        3136,
+        1760
+      ],
+      "id": "56423098-d07a-4e6b-85a3-a00b8d21a3bd",
+      "name": "Send a message1",
+      "webhookId": "1331156d-92e5-4de7-8e93-d3fb686388e2",
+      "credentials": {
+        "discordBotApi": {
+          "id": "EOXPf5Fg0Eww94si",
+          "name": "Analyseur de Cryptos"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -1520,
+        1760
+      ],
+      "id": "94e9cdb8-d76b-4dfa-95c2-db2395bdb695",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1MZ0PWwo3V-RnYIyfobP_QDliwFUyyyG61h10TviTIVM",
+          "mode": "list",
+          "cachedResultName": "Analyseur de Crypto Automatique",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MZ0PWwo3V-RnYIyfobP_QDliwFUyyyG61h10TviTIVM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MZ0PWwo3V-RnYIyfobP_QDliwFUyyyG61h10TviTIVM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1296,
+        1664
+      ],
+      "id": "0778c211-034f-40ba-986b-0cb72bebf4c3",
+      "name": "Liste Cryptos1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "E3yxa3nKoA82VdVD",
+          "name": "Michel Gros"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1iYLnbK10EyVXmI-Rn8B5M8GpFJLyZbItPPdd5H0-xPs",
+          "mode": "list",
+          "cachedResultName": "Cryptos Traitées",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iYLnbK10EyVXmI-Rn8B5M8GpFJLyZbItPPdd5H0-xPs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iYLnbK10EyVXmI-Rn8B5M8GpFJLyZbItPPdd5H0-xPs/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1296,
+        1856
+      ],
+      "id": "91708e9c-26f2-4386-895c-ca457f56cca2",
+      "name": "Cryptos Analysées1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "E3yxa3nKoA82VdVD",
+          "name": "Michel Gros"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "Nom du Projet à Analyser (rentrer le nom exact dans les cases ci-dessous) 👇",
+              "field2": "Projets déjà Analysés :"
+            }
+          ]
+        },
+        "resolve": "preferInput1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        -1072,
+        1728
+      ],
+      "id": "70d8da23-a440-4334-aa6a-208c10b29539",
+      "name": "Compare Datasets1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -368,
+        1760
+      ],
+      "id": "a20f6b09-befe-4a8b-9c02-e5a728287746",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1iYLnbK10EyVXmI-Rn8B5M8GpFJLyZbItPPdd5H0-xPs",
+          "mode": "list",
+          "cachedResultName": "Cryptos Traitées",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iYLnbK10EyVXmI-Rn8B5M8GpFJLyZbItPPdd5H0-xPs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iYLnbK10EyVXmI-Rn8B5M8GpFJLyZbItPPdd5H0-xPs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Projets déjà Analysés :": "={{ $('Edit Fields2').item.json.coinID }}"
+          },
+          "matchingColumns": [
+            "Projets déjà Analysés :"
+          ],
+          "schema": [
+            {
+              "id": "Projets déjà Analysés :",
+              "displayName": "Projets déjà Analysés :",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3456,
+        2544
+      ],
+      "id": "fd586830-91e8-4f49-8a3d-5ccd8f56dec3",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "E3yxa3nKoA82VdVD",
+          "name": "Michel Gros"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.coingecko.com/api/v3/coins/{{ $json['Nom du Projet à Analyser (rentrer le nom exact dans les cases ci-dessous) 👇'] }}?localization=false&market_data=true&community_data=true&developer_data=true&x_cg_demo_api_key=CG-NX7JKuqY2xJDDMCyFbBCGQNj",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -784,
+        1760
+      ],
+      "id": "6da59d88-8e22-411d-b065-60fb6cb36f64",
+      "name": "Infos coingecko2"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1072,
+        1728
+      ],
+      "id": "e43102c9-2b52-4dbe-b2a3-1faa7f75495f",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "text"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1760
+      ],
+      "id": "dcd15d07-bf3f-443c-af9e-67ea2f3e8a63",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        1488,
+        2000
+      ],
+      "id": "52bdfe8e-af1e-4f65-bab3-d7c783c67149",
+      "name": "DeepSeek Chat Model1",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "k87ztNOlnxgPGhg8",
+          "name": "mocassinmania"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} tokenomics distribution vesting unlock schedule 2025 2026\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        16,
+        1152
+      ],
+      "id": "5603b9b9-d687-4197-8cd5-e7eae3ba6ced",
+      "name": "HTTP Request15"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto treasury revenue audit security risk\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        256,
+        1152
+      ],
+      "id": "a48ed140-7824-403c-a460-cb88068ba99b",
+      "name": "HTTP Request16"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results1 = $('HTTP Request15').first().json.results;\nconst results2 = $input.first().json.results;\n\nconst allResults = [...results1, ...results2];\n\nconst formatted = allResults.map(r =>\n  `URL: ${r.url}\\nTITLE: ${r.title}\\nCONTENT: ${r.content}`\n).join('\\n\\n---\\n\\n');\n\nconst coin_name = $('HTTP Request15').first().json.query.split(' ')[0];\n\nreturn [{\n  json: {\n    coin_name: coin_name,\n    tavilyContext: formatted\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        1152
+      ],
+      "id": "e9007c99-2057-46fd-9ab8-01d37ab821e2",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        704,
+        1344
+      ],
+      "id": "9a6382ce-48af-4982-82b7-abb651f3941c",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "k87ztNOlnxgPGhg8",
+          "name": "mocassinmania"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto team founders CEO CTO 2024 2025 2026\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        16,
+        1536
+      ],
+      "id": "42378a54-5834-4a76-a90a-9da24e11bee4",
+      "name": "HTTP Request17"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto core team background experience\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        256,
+        1536
+      ],
+      "id": "4e34f9b6-f101-4de5-a8e2-4a77cd26feeb",
+      "name": "HTTP Request18"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results1 = $('HTTP Request17').first().json.results;\nconst results2 = $input.first().json.results;\n\nconst allResults = [...results1, ...results2];\n\nconst formatted = allResults.map(r =>\n  `URL: ${r.url}\\nTITLE: ${r.title}\\nCONTENT: ${r.content}`\n).join('\\n\\n---\\n\\n');\n\nconst coin_name = $('HTTP Request17').first().json.query.split(' ')[0];\n\nreturn [{\n  json: {\n    coin_name: coin_name,\n    tavilyContext: formatted\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        1536
+      ],
+      "id": "51b3a79b-ab1a-4dee-ad73-8947fe362cbb",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        704,
+        1728
+      ],
+      "id": "2a30bda6-98ba-4ba6-8567-fda19b5ed451",
+      "name": "DeepSeek Chat Model2",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "k87ztNOlnxgPGhg8",
+          "name": "mocassinmania"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Projet : {{ $json.coin_name }}\n\nDonnées de recherche :\n\n{{ $json.tavilyContext }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a professional crypto research analyst specializing in tokenomics, protocol finance, on-chain metrics, and risk assessment in the Web3 ecosystem. Your sole task is to produce ONE specific section of a comprehensive crypto project analysis report: \"Tokenomic, Santé Financière & Risques\".\n\nYou will receive web research results already collected for you. Use ONLY this data as your source — do not use your training data. Every factual claim must come from a URL present in the provided research results.\n\n---\n\n### OUTPUT FORMAT\n\nWrite in French. Use the following structure:\n\n## 🪙 Tokenomic, Santé Financière & Risques — {{ $json.coin_name }}\n\n### 1. Distribution & Allocation des Tokens\n### 2. Vesting & Déblocages à Venir\n### 3. Santé Financière du Protocole\n### 4. Métriques de Valorisation\n### 5. Risques & Sécurité\n### 6. 🎯 Note Finale\n\n## 🎯 Note : [X/10]\n\n| Critère | Note | Commentaire court |\n|---------|------|-------------------|\n| Qualité de la tokenomic | X/10 | ... |\n| Pression vendeuse des unlocks | X/10 | ... |\n| Solidité financière du protocole | X/10 | ... |\n| Valorisation vs. fondamentaux | X/10 | ... |\n| Profil de risque global | X/10 | ... |\n\nJustification : (2-3 phrases factuelles)\n\n---\n\n### RULES\n- Cite sources inline : [anchor text](URL)\n- Only cite URLs present in the provided research data\n- Never hallucinate sources\n- Minimum 600 words, maximum 1200 words\n- Neutral analytical tone, no marketing language\n- Flag missing data explicitly\n- Flag red flags : FDV/MC > 10x, token concentration, no audit, treasury 100% native tokens\n\n\n### FORMATTING RULES\n- Output the entire analysis in clean HTML format\n- Use <h2> for main section title\n- Use <h3> for subsections (1. Distribution, 2. Vesting, etc.)\n- Use <p> for paragraphs\n- Use <strong> for bold emphasis on key data points\n- Use <a href=\"URL\">anchor text</a> for all source citations — never write raw URLs\n- Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for the scoring table\n- Use <ul> and <li> for bullet point lists\n- No markdown syntax whatsoever (no **, no ##, no [], no *)\n- No code blocks, no backticks\n- Start directly with <h2> — do not include <html>, <head> or <body> tags"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        704,
+        1152
+      ],
+      "id": "fad1648e-6e1b-4648-ba9f-960497ddacd5",
+      "name": "Tokenomic & Santé Financière"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Projet : {{ $json.coin_name }}\n\nDonnées de recherche :\n\n{{ $json.tavilyContext }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a professional crypto research analyst specializing in team evaluation, founder due diligence, and leadership assessment in the Web3 ecosystem. Your sole task is to produce the \"Équipe & Fondateurs\" section of a comprehensive crypto project analysis report.\n\nYou will receive web research results already collected for you. Use ONLY this data as your source — do not use your training data. Every factual claim must come from a URL present in the provided research results.\n\n---\n\n### OUTPUT FORMAT\n\nWrite in French, structured as follows:\n\n## 👥 Équipe & Fondateurs — {{ $json.coin_name }}\n\n### 1. Présentation des Fondateurs\n### 2. Équipe Core\n### 3. Conseillers & Board\n### 4. Signaux & Red Flags\n### 5. Comparaison Sectorielle\n### 6. 🎯 Notation — Équipe & Fondateurs\n\n| Critère | Note /10 | Justification |\n|---------|----------|---------------|\n| Expérience & crédibilité des fondateurs | /10 | ... |\n| Solidité de l'équipe technique | /10 | ... |\n| Qualité du réseau & des advisors | /10 | ... |\n| Transparence & identité vérifiable | /10 | ... |\n| Track record & projets antérieurs | /10 | ... |\n\n**Note Globale Équipe : [MOYENNE] / 10**\n\n---\n\n### FORMATTING RULES\n- Output the entire analysis in clean HTML format\n- Use <h2> for main section title\n- Use <h3> for subsections\n- Use <p> for paragraphs\n- Use <strong> for bold emphasis on key data points\n- Use <a href=\"URL\">anchor text</a> for all source citations — never write raw URLs\n- Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for the scoring table\n- Use <ul> and <li> for bullet point lists\n- No markdown syntax whatsoever (no **, no ##, no [], no *)\n- No code blocks, no backticks\n- Start directly with <h2> — do not include <html>, <head> or <body> tags\n\n---\n\n### RULES\n- Cite sources inline with <a href=\"URL\"> tags\n- Only cite URLs present in the provided research data\n- Never hallucinate sources\n- 600 to 1200 words\n- Neutral analytical tone\n- Flag explicitly any unconfirmed or contradictory information\n- Flag red flags : anonymous team, unverifiable CVs, failed projects, whitepaper plagiarism\n- Notes must be justified by research, never arbitrary"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        704,
+        1536
+      ],
+      "id": "078bed4b-7eab-43bc-abe5-e22636f7f44d",
+      "name": "Equipe & CEO"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto funding round investors 2024 2025 2026\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        16,
+        1968
+      ],
+      "id": "d5a88158-9241-493c-b184-1ac230e95f0c",
+      "name": "HTTP Request19"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto venture capital backers\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        256,
+        1968
+      ],
+      "id": "191fe32f-f3f5-413c-b853-099146560d1a",
+      "name": "HTTP Request20"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results1 = $('HTTP Request19').first().json.results;\nconst results2 = $input.first().json.results;\n\nconst allResults = [...results1, ...results2];\n\nconst formatted = allResults.map(r =>\n  `URL: ${r.url}\\nTITLE: ${r.title}\\nCONTENT: ${r.content}`\n).join('\\n\\n---\\n\\n');\n\nconst coin_name = $('HTTP Request19').first().json.query.split(' ')[0];\n\nreturn [{\n  json: {\n    coin_name: coin_name,\n    tavilyContext: formatted\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        1968
+      ],
+      "id": "26d0ad51-b91d-48f9-868d-92f96ec8fd89",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        704,
+        2160
+      ],
+      "id": "960d76ec-b336-41b5-b463-e1e548a9bb31",
+      "name": "DeepSeek Chat Model3",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "k87ztNOlnxgPGhg8",
+          "name": "mocassinmania"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Projet : {{ $json.coin_name }}\n\nDonnées de recherche :\n\n{{ $json.tavilyContext }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a professional crypto research analyst specializing in venture capital, fundraising intelligence, and investor due diligence in the Web3 ecosystem. Your sole task is to produce the \"Investisseurs & Fundraising\" section of a comprehensive crypto project analysis report.\n\nYou will receive web research results already collected for you. Use ONLY this data as your source — do not use your training data. Every factual claim must come from a URL present in the provided research results.\n\n---\n\n### OUTPUT FORMAT\n\nWrite in French, structured as follows:\n\n## 💼 Investisseurs & Fundraising — {{ $json.coin_name }}\n\n### 1. Historique des Levées de Fonds\n### 2. Profil des Investisseurs Principaux\n### 3. Investisseurs Stratégiques & Angels\n### 4. Signaux & Interprétation\n### 5. Comparaison Sectorielle\n### 6. 🎯 Notation — Profil Investisseurs\n\n| Critère | Note /10 | Justification |\n|---------|----------|---------------|\n| Qualité & réputation des VCs | /10 | ... |\n| Montant total levé vs. ambition du projet | /10 | ... |\n| Diversification du tour | /10 | ... |\n| Transparence des informations de fundraising | /10 | ... |\n| Alignement stratégique des investisseurs | /10 | ... |\n\n**Note Globale Investisseurs : [MOYENNE] / 10**\n\n---\n\n### FORMATTING RULES\n- Output the entire analysis in clean HTML format\n- Use <h2> for main section title\n- Use <h3> for subsections\n- Use <p> for paragraphs\n- Use <strong> for bold emphasis on key data points\n- Use <a href=\"URL\">anchor text</a> for all source citations — never write raw URLs\n- Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for the scoring table\n- Use <ul> and <li> for bullet point lists\n- No markdown syntax whatsoever (no **, no ##, no [], no *)\n- No code blocks, no backticks\n- Start directly with <h2> — do not include <html>, <head> or <body> tags\n\n---\n\n### RULES\n- Cite sources inline with <a href=\"URL\"> tags\n- Only cite URLs present in the provided research data\n- Never hallucinate sources\n- 600 to 1200 words\n- Neutral analytical tone\n- Flag explicitly any unconfirmed or contradictory information\n- Flag red flags : unknown investors, undisclosed amounts, suspicious structures\n- Notes must be justified by research, never arbitrary"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        704,
+        1968
+      ],
+      "id": "01ffa69f-a616-4f48-a495-00b9283898c9",
+      "name": "Investisseurs"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto narrative vision technology architecture 2025 2026\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        16,
+        2368
+      ],
+      "id": "5016ebcf-c9bc-41e6-a886-d58f0e6c4d04",
+      "name": "HTTP Request21"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"api_key\": \"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\",\n  \"query\": \"{{ $json.coin_name }} crypto competitors market positioning differentiators\",\n  \"search_depth\": \"advanced\",\n  \"max_results\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        256,
+        2368
+      ],
+      "id": "eafb070b-274c-4486-b2bb-7c8d036cdde0",
+      "name": "HTTP Request22"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results1 = $('HTTP Request21').first().json.results;\nconst results2 = $input.first().json.results;\n\nconst allResults = [...results1, ...results2];\n\nconst formatted = allResults.map(r =>\n  `URL: ${r.url}\\nTITLE: ${r.title}\\nCONTENT: ${r.content}`\n).join('\\n\\n---\\n\\n');\n\nconst coin_name = $('HTTP Request21').first().json.query.split(' ')[0];\n\nreturn [{\n  json: {\n    coin_name: coin_name,\n    tavilyContext: formatted\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        2368
+      ],
+      "id": "583709e6-630a-4d8a-8ea7-e6de511b372a",
+      "name": "Code in JavaScript7"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        704,
+        2560
+      ],
+      "id": "00c30e36-c365-4f00-a7e3-601c5cff7535",
+      "name": "DeepSeek Chat Model4",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "k87ztNOlnxgPGhg8",
+          "name": "mocassinmania"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Projet : {{ $json.coin_name }}\n\nDonnées de recherche :\n\n{{ $json.tavilyContext }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a professional crypto research analyst specializing in blockchain technology, Web3 narratives, and competitive market positioning. Your sole task is to produce the \"Narratif, Technologie & Positionnement\" section of a comprehensive crypto project analysis report.\n\nYou will receive web research results already collected for you. Use ONLY this data as your source — do not use your training data. Every factual claim must come from a URL present in the provided research results.\n\n---\n\n### OUTPUT FORMAT\n\nWrite in French, structured as follows:\n\n## 🌐 Narratif, Technologie & Positionnement — {{ $json.coin_name }}\n\n\n### 1. Narratif du Projet\n### 2. Architecture Technique\n### 3. Mécanisme de Consensus & Sécurité\n### 4. Innovations Clés & Différenciateurs\n### 5. Positionnement Concurrentiel\n### 6. 🎯 Note Finale\n\n| Critère | Note | Commentaire court |\n|---------|------|-------------------|\n| Clarté du narratif | X/10 | ... |\n| Solidité technique | X/10 | ... |\n| Innovation & différenciation | X/10 | ... |\n| Force du positionnement | X/10 | ... |\n\nJustification : (2-3 phrases factuelles et nuancées)\n\n---\n\n### FORMATTING RULES\n- Output the entire analysis in clean HTML format\n- Use <h2> for main section title\n- Use <h3> for subsections\n- Use <p> for paragraphs\n- Use <strong> for bold emphasis on key data points\n- Use <a href=\"URL\">anchor text</a> for all source citations — never write raw URLs\n- Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for the scoring table\n- Use <ul> and <li> for bullet point lists\n- No markdown syntax whatsoever (no **, no ##, no [], no *)\n- No code blocks, no backticks\n- Start directly with <h2> — do not include <html>, <head> or <body> tags\n\n---\n\n### RULES\n- Cite sources inline with <a href=\"URL\"> tags\n- Only cite URLs present in the provided research data\n- Never hallucinate sources\n- 600 to 1200 words\n- Neutral analytical tone, no marketing language\n- Prioritize technical depth over surface-level description\n- Flag explicitly any contradictory information\n- Notes must be justified by research, never arbitrary"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        704,
+        2368
+      ],
+      "id": "78aa7ad9-373e-459d-bd91-8fae0efd57ce",
+      "name": "Narratif / Techno & Concurrents"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        1824,
+        2016
+      ],
+      "id": "3267ff98-86c8-4fc5-afaa-bbcca425a68e",
+      "name": "DeepSeek Chat Model5",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "k87ztNOlnxgPGhg8",
+          "name": "mocassinmania"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a professional crypto research analyst. Your sole task is to produce a concise and engaging introduction for a comprehensive crypto project analysis report.\n\nYou will receive the full analysis sections already written by other analysts covering: Narratif & Technologie, Équipe & Fondateurs, Investisseurs & Fundraising, and Tokenomic & Risques. Use ONLY this content to write the introduction — synthesize the key findings, do not invent new information.\n\n---\n\n### OUTPUT FORMAT\n\nWrite in French, structured as follows:\n\n## 📋 Introduction — {{ $json.coin_name }}\n\n### Vue d'Ensemble du Projet\n### Principaux Points Forts\n### Principaux Points de Vigilance\n### Verdict Préliminaire\n\n---\n\n### FORMATTING RULES\n- Output in clean HTML format\n- Use <h2> for main title\n- Use <h3> for subsections\n- Use <p> for paragraphs\n- Use <strong> for key data points\n- Use <ul> and <li> for bullet points\n- No markdown syntax (no **, no ##, no [], no *)\n- No code blocks, no backticks\n- Start directly with <h2> — do not include <html>, <head> or <body> tags\n\n---\n\n### RULES\n- 200 to 400 words maximum — concise and punchy\n- Neutral analytical tone, no marketing language\n- Synthesize only what is present in the provided sections\n- Never invent facts or sources\n- The verdict préliminaire must reflect the average scores from all sections"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1488,
+        1760
+      ],
+      "id": "e65f7181-024c-415b-a2f3-b452ca48cab4",
+      "name": "Introduction"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a professional crypto research analyst. Your sole task is to produce the conclusion and final global score of a comprehensive crypto project analysis report.\n\nYou will receive the full analysis sections already written covering: Narratif & Technologie, Équipe & Fondateurs, Investisseurs & Fundraising, and Tokenomic & Risques. Each section contains individual scores. Your job is to synthesize everything into a final verdict with a calculated global score.\n\n---\n\n### OUTPUT FORMAT\n\nWrite in French, structured as follows:\n\n## 🏁 Conclusion & Verdict Final — {{ $json.coin_name }}\n\n### Synthèse Globale\n### Forces du Projet\n### Faiblesses & Risques Majeurs\n### 🎯 Note Globale Finale\n\n| Section | Note /10 |\n|---------|----------|\n| Narratif, Technologie & Positionnement | X/10 |\n| Équipe & Fondateurs | X/10 |\n| Investisseurs & Fundraising | X/10 |\n| Tokenomic, Santé Financière & Risques | X/10 |\n| **NOTE GLOBALE** | **X/10** |\n\n### Verdict Final\n### Profil d'Investisseur Cible\n\n---\n\n### FORMATTING RULES\n- Output in clean HTML format\n- Use <h2> for main title\n- Use <h3> for subsections\n- Use <p> for paragraphs\n- Use <strong> for key data points and the global score\n- Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for the scores table\n- Use <ul> and <li> for bullet points\n- No markdown syntax (no **, no ##, no [], no *)\n- No code blocks, no backticks\n- Start directly with <h2> — do not include <html>, <head> or <body> tags\n\n---\n\n### RULES\n- 300 to 500 words\n- Extract the global note from each section and calculate the exact average\n- The global score must be the mathematical average of the 4 section scores — never approximate\n- Neutral analytical tone, no marketing language\n- The \"Verdict Final\" must be a clear buy/watch/avoid signal with nuanced justification\n- The \"Profil d'Investisseur Cible\" identifies which type of investor this project suits (long-term, speculative, avoid, etc.)\n- Never invent facts or scores not present in the provided sections"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1824,
+        1760
+      ],
+      "id": "7004ae4d-f43e-4444-b3d5-ea5b88d66665",
+      "name": "Conclusion"
+    },
+    {
+      "parameters": {
+        "jsCode": "const intro = $('Introduction').first().json.text;\nconst narratif = $('Narratif / Techno & Concurrents').first().json.text;\nconst equipe = $('Equipe & CEO').first().json.text;\nconst investisseurs = $('Investisseurs').first().json.text;\nconst tokenomic = $('Tokenomic & Santé Financière').first().json.text;\nconst conclusion = $('Conclusion').first().json.text;\nconst coin_name = $json.coin_name;\n\nconst fullHtml = `\n<!DOCTYPE html>\n<html>\n<head><meta charset=\"UTF-8\"></head>\n<body>\n${intro}\n<hr>\n${narratif}\n<hr>\n${equipe}\n<hr>\n${investisseurs}\n<hr>\n${tokenomic}\n<hr>\n${conclusion}\n</body>\n</html>\n`;\n\nreturn [{\n  json: {\n    coin_name,\n    html: fullHtml\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        1760
+      ],
+      "id": "a111f511-09be-494d-b5b9-f8e163db6b34",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "name": "=Analyse - {{ $('Edit Fields2').item.json.coin_name }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {
+          "appPropertiesUi": {
+            "appPropertyValues": [
+              {
+                "key": "mimeType",
+                "value": "application/vnd.google-apps.document"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2672,
+        1760
+      ],
+      "id": "c2987cc0-3906-4a1f-adc6-5f2e3e0edf8b",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "yya3kAYx4YMVOTBx",
+          "name": "Michel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const html = $input.first().json.html;\nconst coin_name = $input.first().json.coin_name;\n\nconst binaryData = Buffer.from(html, 'utf8');\n\nreturn [{\n  json: { coin_name },\n  binary: {\n    data: {\n      data: binaryData.toString('base64'),\n      mimeType: 'text/html',\n      fileName: `Analyse ${coin_name}.html`\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2432,
+        1760
+      ],
+      "id": "ffa1f9c3-7989-4a7b-9c8c-df2fb8f19a67",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "operation": "share",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "permissionsUi": {
+          "permissionsValues": {
+            "role": "reader",
+            "type": "anyone"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2912,
+        1760
+      ],
+      "id": "09113533-dacb-485f-a696-30f5a2d30d7e",
+      "name": "Share file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "yya3kAYx4YMVOTBx",
+          "name": "Michel"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Liste Cryptos1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Cryptos Analysées1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liste Cryptos1": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cryptos Analysées1": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Compare Datasets1": {
+      "main": [
+        [
+          {
+            "node": "Infos coingecko2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request17",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request19",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Infos coingecko2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Introduction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Introduction",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request15": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request16": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "Tokenomic & Santé Financière",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Tokenomic & Santé Financière",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request17": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request18": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Equipe & CEO",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "Equipe & CEO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tokenomic & Santé Financière": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Equipe & CEO": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "HTTP Request19": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request20": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Investisseurs",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "Investisseurs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Investisseurs": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "HTTP Request21": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request22": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript7": {
+      "main": [
+        [
+          {
+            "node": "Narratif / Techno & Concurrents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Narratif / Techno & Concurrents",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Narratif / Techno & Concurrents": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Conclusion",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Introduction": {
+      "main": [
+        [
+          {
+            "node": "Conclusion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conclusion": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Share file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Share file": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "5358e6df-2149-43ef-bfdc-ee428e1938fb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34720ea3d4cdf759f71f22dcfa0a360c966398fab856b7e44b4b173005b208e4"
+  },
+  "id": "CvQfyrsy0cR8Cwmk",
+  "tags": []
+}
