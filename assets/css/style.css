@@ -316,7 +316,7 @@
   .delay-4 { animation-delay: 0.4s; }
 
   /* ── RAPPORTS LISTE ── */
-  .report-list { display: flex; flex-direction: column; gap: 2px; }
+  .report-list { display: flex; flex-direction: column; gap: 16px; }
   .report-row {
     display: flex; gap: 24px; align-items: flex-start;
     background: var(--bg2);
