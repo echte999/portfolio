@@ -1,0 +1,1028 @@
+{
+  "name": "Page Produit",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        352,
+        -272
+      ],
+      "id": "7c373c5c-ce0f-4f34-90a0-27f4c314d1a5",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "operation": "update",
+        "productId": "={{ $('Split Out').item.json.id }}",
+        "updateFields": {
+          "body_html": "={{ $('Description Produit').item.json.text }}",
+          "handle": "={{ $('Mot Clé SEO').item.json.text }}",
+          "tags": "={{ $('Balises').item.json.text }}",
+          "title": "={{ $('Mot Clé SEO').item.json.text }}"
+        }
+      },
+      "type": "n8n-nodes-base.shopify",
+      "typeVersion": 1,
+      "position": [
+        512,
+        976
+      ],
+      "id": "68c86d9e-1851-41e0-95ea-86ee7fdd51be",
+      "name": "Update a product",
+      "credentials": {
+        "shopifyApi": {
+          "id": "Ms7t34mIOb621Bpf",
+          "name": "Shopify Tokai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1072,
+        192
+      ],
+      "id": "6be1f7e2-4a73-4d2f-b220-2b3dcab45435",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "i3GV7kpMoV8LksZD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1920,
+        400
+      ],
+      "id": "63b920ec-b178-4984-be67-f6246b7155df",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "i3GV7kpMoV8LksZD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        2224,
+        544
+      ],
+      "id": "63c66db4-8424-4630-972b-8da931ac4b5f",
+      "name": "Anthropic Chat Model2",
+      "credentials": {
+        "anthropicApi": {
+          "id": "i3GV7kpMoV8LksZD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=🎯 OBJECTIF\n\nAnalyse le produit et sélectionner uniquement les collections existantes dans mon arborescence dans lesquelles le produit peut réellement et logiquement être intégré. Retourne uniquement la collection choisie ou \"vide\", ne dis jamais rien d'autre.\n\n\n📊 MÉTHODE D’ANALYSE\n\nTu dois te baser sur :\n\n- La fonction du produit\n- Sa catégorie\n- Son usage\n- Son public cible\n- Son style / design\n- Son univers\n- Les mots-clés du titre SEO suivant : {{ $('Mot Clé SEO').item.json.text }}\n- Mon Arborescence complête : \t\t\t\n\n[Liste des collections de l'arbo]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Tu es un expert SEO e-commerce spécialisé en structuration de catalogue et optimisation d’arborescence.\n\nJe vais t’envoyer Mon arborescence complète\n\n\n\n⚠️ RÈGLES ABSOLUES\n\n1. ❌ Tu ne dois JAMAIS inventer de nouvelles collections\n2. ❌ Tu ne dois JAMAIS modifier les noms des collections\n3. ❌ Tu ne dois sélectionner QU'UNE collection présente dans l'arborescence\n4. ❌ Tu ne dois PAS attribuer plus d'une collection à un même produit\n5. ❌ Tu ne dois jamais dire autre chose que le nom de la collection seléctionnée\n6. ❌ Ne pas sur-optimiser ou forcer l’intégration SEO\n7. ✅ Sélectionner uniquement la collection réellement cohérente (intention utilisateur réelle)\n8. ✅ Liste uniquement la collection adaptée seule sans texte superflu\n9. ✅ Si tu penses que le produit ne rentre dans aucune des collections, retourne simplement \"vide\" sans rien d'autre"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1920,
+        176
+      ],
+      "id": "0be8fd11-20eb-432b-913f-d294328bf923",
+      "name": "Balises"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=OBJECTIF :\nRédiger une description produit en fraçais de 220 mots (tolérance ±5 mots) optimisée SEO et conversion à partir des informations suivantes : \n\n\n- Mot-clé principal : {{ $('Mot Clé SEO').item.json.text }}\n- Description produit originelle : {{ $('Split Out').item.json.body_html }}\n\n\n\nLe mot-clé {{ $('Mot Clé SEO').item.json.text }} doit apparaître :\n• Dans la première phrase\n• 3 à 5 fois au total\n• Naturellement intégré\n• Inclus des titres H2 et H3\n• Evite le contenu dupliqué\n\n\n\nMAILLAGE INTERNE (OBLIGATOIRE EN FIN DE TEXTE) :\nAjouter un court paragraphe final naturel intégrant la ou les collections suivantes : {{ $json.text }}. Les intégrer de manière naturelle dans la phrase (pas en liste).\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Tu es un expert en rédaction e-commerce SEO spécialisé dans la niche [NICHE].\n\n\nCONTEXTE :\n\nNiche : [NICHE]\nPositionnement : [TON SOUHAITé]\nObjectif : SEO pur + conversion e-commerce\nStructure : reproduire la structure de base de l'exemple :\n\n\n[Mettre un exemple de description en HTML]\n\n\n\nCONTRAINTES SEO :\n\nMot-clé principal : {{ $('Mot Clé SEO').item.json.text }}\n\nLe mot-clé doit apparaître :\n• Dans la première phrase\n• 3 à 5 fois au total\n• Naturellement intégré\n• Inclus des titres H2 et H3\n• Evite le contenu dupliqué\n\n\n\nINTERDICTIONS :\n\n- Pas d’emojis\n- Pas de promesses infondées \n- Produis uniquement le texte final."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        2224,
+        336
+      ],
+      "id": "11141e05-5386-40cd-b056-ab93cc348776",
+      "name": "Description Produit"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Génère un mot clé SEO/SEA en 4-5 MOTS MAXIMUM à partir des informations ci-dessous :\n\nTitre : {{ $('Split Out').item.json.title }}\n\nCaractéristiques : {{ $('Split Out').item.json.body_html }}\n\nArborescence : \n\n[Lister les catégories de l'arborescence]",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Tu es un expert SEO et Google Ads spécialisé dans la niche [NICHE]\n\n\n⚠️ RÈGLES ABSOLUES\n\n- Contient toujours le mot clé [NICHE]\n- Maximum 4-5 mots grand maximum\n- 100% descriptif du produit\n- Aucune indication de taille\n- Aucune répétition de mot\n- Aucun mot lié au prix (cheap, pas cher, promo, discount…)\n- Aucun mot lié à la composition matière\n- Pas de mot générique vide\n- Doit être exploitable en SEO et SEA\n- Doit inclure la niche si pertinent naturellement\n- Ne jamais répéter un mot-clé déjà donné précédemment\n- Pas de variation trop proche d’un mot-clé de la liste : {{ $json['Liste des mots clés Utilisés'] }}\n- Pas d’explication\n- Pas de ponctuation inutile\n- Première lettre des noms en majuscule\n- N'indique jamais la couleur\n\n\n\n🌍 LANGUE DE SORTIE\n\nLangue : FRANCAIS\n\n\n📌 FORMAT DE SORTIE STRICT\n\nMot-clé généré\n\nRien d’autre."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1072,
+        16
+      ],
+      "id": "10186aa9-2d8f-40f0-be5a-b5bb26b8d745",
+      "name": "Mot Clé SEO"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        384,
+        0
+      ],
+      "id": "de5236bb-53d4-41af-a90f-5757ee024eb0",
+      "name": "Boucle Modification Produit"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        2560,
+        720
+      ],
+      "id": "792744f5-67fc-4b4a-83bd-64e6c8521b2a",
+      "name": "Anthropic Chat Model3",
+      "credentials": {
+        "anthropicApi": {
+          "id": "i3GV7kpMoV8LksZD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Objectif : Rédiger une méta description marketing optimisée SEO, destinée aux moteurs de recherche (160 caractères maximum, espaces inclus), à partir des infomations suivantes :\n\n- Titre produit : {{ $('Mot Clé SEO').item.json.text }} → Insère ce mot-clé naturellement au début ou au centre de la méta description.\n\n- Description produit : {{ $json.text }}\n\n\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Tu es un expert SEO e-commerce spécialisé en méta descriptions Shopify, avec un focus sur des produits premium et émotionnels.\n\nInstructions strictes :\n\n- Maximum 150 caracères\n- Inclure le mot-clé principal {{ $('Mot Clé SEO').item.json.text }} de manière naturelle.\n- Ton : [TON].\n- Ne pas utiliser de guillemets ou emojis.\n- Optimiser le CTR et l’adaptabilité SEO.\n\n\nFormat de sortie :\n\nMéta description finale uniquement.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        2560,
+        512
+      ],
+      "id": "e78ed0ed-cc24-45f0-b24e-1356c0b0515c",
+      "name": "Meta Description"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://[ID].myshopify.com/admin/api/2024-01/products/{{ $('Update a product').item.json.id }}/metafields.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "shopifyApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"metafield\": {\n    \"namespace\": \"global\",\n    \"key\": \"description_tag\",\n    \"value\": \"{{ $('Meta Description').item.json.text }}\",\n    \"type\": \"single_line_text_field\"\n  }\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1440,
+        976
+      ],
+      "id": "69b07dc9-21d2-420b-a44a-bed4538998a2",
+      "name": "Méta Description",
+      "credentials": {
+        "shopifyApi": {
+          "id": "Ms7t34mIOb621Bpf",
+          "name": "Shopify Tokai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://[ID].myshopify.com/admin/api/2024-01/graphql.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "shopifyApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{\n{\n  \"query\": \"mutation productUpdate($input: ProductInput!) { productUpdate(input: $input) { product { id category { name } } userErrors { field message } } }\",\n  \"variables\": {\n    \"input\": {\n      \"id\": \"gid://shopify/Product/\" + $json.id,\n      \"category\": \"gid://shopify/TaxonomyCategory/lb\"\n\n    }\n  }\n}\n}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        976,
+        976
+      ],
+      "id": "7cda4e1e-038a-4024-93a4-11c7b46095b7",
+      "name": "Categorie",
+      "credentials": {
+        "shopifyApi": {
+          "id": "Ms7t34mIOb621Bpf",
+          "name": "Shopify Tokai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        2944,
+        928
+      ],
+      "id": "5193a88e-230d-4dbb-a6a4-e398952b3a0c",
+      "name": "Anthropic Chat Model4",
+      "credentials": {
+        "anthropicApi": {
+          "id": "i3GV7kpMoV8LksZD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Objectif : Transforme les informations originales du produit  en une liste HTML de caractéristiques pour le produit {{ $('Mot Clé SEO').item.json.text }}. \n\nVoici la description originale du produit : {{ $('Split Out').item.json.body_html }}\n\n",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Tu es un expert en rédaction produit et en formatage HTML.  \n\n\nRespecte strictement la forme de ce modèle :  \n\n[STRUCTURE DU META CHAMP CARACTERISTIQUE EN HTML]\n\nInstructions supplémentaires :\n\n- Reformule les informations pour qu’elles soient claires, précises et complètes.  \n- N'indique jamais de marque de produit\n- Ne fais jamais de promesses infondées\n- Produis directement du HTML prêt à l’intégration.  \n- Adapte le vocabulaire à la niche Peluche sans dénaturer le sens.  \n- RETOURNE SEULEMENT LE CODE HTML SANS SUPERFLU\n- \"```html  et \\n```\" \n- NE MET PAS DE \\n "
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        2944,
+        704
+      ],
+      "id": "59a1fa94-f95c-4075-ba85-c95f18dbfca1",
+      "name": "Caracteristiques"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://[ID].myshopify.com/admin/api/2024-01/products/{{ $('Update a product').item.json.id }}/metafields.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "shopifyApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"metafield\": {\n    \"namespace\": \"custom\",\n    \"key\": \"caracteristiques\",\n    \"value\": {{ JSON.stringify($('Caracteristiques').item.json.text) }},\n    \"type\": \"multi_line_text_field\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1888,
+        976
+      ],
+      "id": "2ff926d4-fc54-4c70-b48c-4ef5a9503e54",
+      "name": "HTTP cararacteristiques",
+      "credentials": {
+        "shopifyApi": {
+          "id": "Ms7t34mIOb621Bpf",
+          "name": "Shopify Tokai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "da844fed-08f0-4173-83f6-852e31bd6b2d",
+              "leftValue": "={{ $('Aggregate').item.json['Liste des mots clés Utilisés'] }}",
+              "rightValue": "={{ $json.text }}",
+              "operator": {
+                "type": "array",
+                "operation": "notContains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1440,
+        144
+      ],
+      "id": "2d818c5f-d9fa-4aa5-8aec-7897182f9ada",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY",
+          "mode": "list",
+          "cachedResultName": "Base de Donnée Shopify",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        624,
+        16
+      ],
+      "id": "77ab9566-b19a-473a-a183-36f5b32f19cd",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "E3yxa3nKoA82VdVD",
+          "name": "Michel Gros"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY",
+          "mode": "list",
+          "cachedResultName": "Base de Donnée Shopify",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Liste des mots clés Utilisés": "={{ $('Mot Clé SEO').item.json.text }}"
+          },
+          "matchingColumns": [
+            "Liste des mots clés Utilisés"
+          ],
+          "schema": [
+            {
+              "id": "Liste des mots clés Utilisés",
+              "displayName": "Liste des mots clés Utilisés",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1696,
+        128
+      ],
+      "id": "f4544a16-17eb-44ae-a1e5-5930dccf8453",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "E3yxa3nKoA82VdVD",
+          "name": "Michel Gros"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Liste des mots clés Utilisés"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        832,
+        16
+      ],
+      "id": "3ee764cc-6f66-4bb9-9374-caa49bb4333d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        736,
+        976
+      ],
+      "id": "ba079565-e2d6-4a10-a7e7-4e7dd1742d06",
+      "name": "Wait1",
+      "webhookId": "34bd7f71-b818-4f98-be2e-ed6b58f56607"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1216,
+        976
+      ],
+      "id": "fb0884b1-e234-4d39-9030-94df9b2458de",
+      "name": "Wait2",
+      "webhookId": "e511c847-4ac5-4925-aac7-eef57c6ad2f0"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1664,
+        976
+      ],
+      "id": "34791785-862d-4043-ba68-e2ff49447a2b",
+      "name": "Wait3",
+      "webhookId": "98f3cca1-a164-4e93-b5db-8d3e5b9cfdcf"
+    },
+    {
+      "parameters": {
+        "url": "https://[ID].myshopify.com/admin/api/2024-01/products.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "shopifyApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "50"
+            }
+          ]
+        },
+        "options": {
+          "pagination": {
+            "pagination": {
+              "paginationMode": "responseContainsNextURL",
+              "nextURL": "={{ $response.headers.link && $response.headers.link.includes('rel=\"next\"') ? $response.headers.link.split(',').find(s => s.includes('rel=\"next\"')).match(/<(.*)>/)[1] : undefined }}",
+              "limitPagesFetched": true,
+              "maxRequests": 3,
+              "requestInterval": 1000
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        976,
+        -272
+      ],
+      "id": "c6cc197c-443c-4d44-967d-a19cf140fe9a",
+      "name": "HTTP Request",
+      "credentials": {
+        "shopifyApi": {
+          "id": "Ms7t34mIOb621Bpf",
+          "name": "Shopify Tokai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "products",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -272
+      ],
+      "id": "afde535e-58b4-418d-aeda-25856cfe0d59",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c8b5c143-6436-4a76-8e85-ae428d7882ed",
+              "leftValue": "={{ $('Aggregate1').item.json['Liste des mots clés Utilisés'] }}",
+              "rightValue": "={{ $json.title }}",
+              "operator": {
+                "type": "array",
+                "operation": "notContains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1424,
+        -272
+      ],
+      "id": "43f50c71-3fbd-4db5-806d-489984816e82",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY",
+          "mode": "list",
+          "cachedResultName": "Base de Donnée Shopify",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EguCWMF7-oHRClKb3sbHkv0TOdbA5JZiHjol-1tE5dY/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        560,
+        -272
+      ],
+      "id": "5c86a659-cee4-44a0-afbf-cfe24515c3a1",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "E3yxa3nKoA82VdVD",
+          "name": "Michel Gros"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Liste des mots clés Utilisés"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        768,
+        -272
+      ],
+      "id": "1fcbea05-182a-4dd5-97ce-4b84e8a83b52",
+      "name": "Aggregate1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Mot Clé SEO",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Balises",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Description Produit",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Balises": {
+      "main": [
+        [
+          {
+            "node": "Description Produit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Description Produit": {
+      "main": [
+        [
+          {
+            "node": "Meta Description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a product": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mot Clé SEO": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Boucle Modification Produit": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Meta Description",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Meta Description": {
+      "main": [
+        [
+          {
+            "node": "Caracteristiques",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Méta Description": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Categorie": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Caracteristiques",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Caracteristiques": {
+      "main": [
+        [
+          {
+            "node": "Update a product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP cararacteristiques": {
+      "main": [
+        [
+          {
+            "node": "Boucle Modification Produit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mot Clé SEO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Balises",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Mot Clé SEO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Categorie",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Méta Description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "HTTP cararacteristiques",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Boucle Modification Produit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "d8f76f15-8c35-4f06-b263-ea0e0b186293",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "34720ea3d4cdf759f71f22dcfa0a360c966398fab856b7e44b4b173005b208e4"
+  },
+  "id": "w97ZY7AAar8qpLtC",
+  "tags": []
+}
