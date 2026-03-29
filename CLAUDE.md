@@ -43,12 +43,22 @@ Fichiers téléchargeables (`.pdf`, `.json` n8n) → servis depuis la racine.
 --bg: #080c10    --bg2: #0d1117    --bg3: #111820
 --accent: #00d4a0 (vert)    --accent2: #0087ff (bleu)
 --text: #e8edf2    --muted: #6b7a8d    --muted2: #3d4a57
+--border: rgba(255,255,255,0.07)    --border-h: rgba(255,255,255,0.13)
+--nav-bg: rgba(8,12,16,0.85)
 --mono: 'JetBrains Mono'    --sans: 'Space Grotesk'
 ```
+
+Le sélecteur `[data-theme="light"]` surcharge toutes ces variables — ne pas toucher sans raison.
 
 ## Système de design
 
 - Arrière-plan : `.glow-orb.a` (vert, haut-gauche) + `.glow-orb.b` (bleu, bas-droite) + `body::before` (bruit) + `body::after` (grille).
 - Animations hero : `.fade-up` + `.delay-1` à `.delay-4`.
-- Badges projets : `.badge-ai` (vert) / `.badge-auto` (bleu).
+- Badges projets : `.badge-ai` (vert) / `.badge-auto` (bleu) / `.badge-tool` (violet).
+- Bouton `.theme-toggle` avec icônes moon/sun.
 - **INTERDIT** d'utiliser d'autres polices que Space Grotesk et JetBrains Mono.
+
+## Fonctionnalités JS (main.js)
+
+- **Toggle thème** : bouton `data-action="toggle-theme"`, persistance `localStorage`, script anti-flash dans `<head>` pour appliquer le thème avant le rendu.
+- **Copy email** : bouton `data-action="copy-email"`, feedback visuel 2s.
