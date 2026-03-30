@@ -433,6 +433,7 @@
   .btn-gh:hover { background: rgba(255,255,255,0.05); border-color: var(--text); color: var(--text); transform: translateY(-1px); }
   .project-title a { color: inherit; text-decoration: none; transition: color .2s; }
   .project-title a:hover { color: var(--accent); }
+  .project-error { color: var(--muted); font-size: 14px; margin-top: 24px; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
