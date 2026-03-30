@@ -1,0 +1,35 @@
+window.PROJECTS_DATA = {
+  "projects": [
+    {
+      "title": "Optimiseur de Pages Produit Shopify",
+      "badge": { "label": "IA", "class": "badge-ai" },
+      "description": "Workflow n8n qui lit une liste de produits depuis Google Sheets, récupère chaque fiche via l'API Shopify, puis génère automatiquement avec Claude 4 éléments SEO distincts : mot-clé principal, balises, description produit et méta description, caractéristiques. Les données sont réinjectées sur Shopify avec des délais pour respecter les limites de l'API.",
+      "image": {
+        "src": "assets/img/project-page-produit.png",
+        "alt": "Workflow n8n — Optimiseur Pages Produit Shopify"
+      },
+      "tags": ["n8n", "Shopify API", "Claude", "Google Sheets", "SEO"],
+      "github_url": "https://github.com/99Jared9/optimisateur-pages-produit-shopify",
+      "links": [
+        { "label": "Workflow JSON", "href": "Page%20Produit.json", "class": "btn-dl-json", "download": true, "icon": "download" },
+        { "label": "Voir sur GitHub", "href": "https://github.com/99Jared9/optimisateur-pages-produit-shopify", "class": "btn-gh", "external": true, "icon": "github" }
+      ]
+    },
+    {
+      "title": "Newsletter Fondamentale Automatique",
+      "badge": { "label": "Auto", "class": "badge-auto" },
+      "description": "Workflow n8n qui scrape 3 canaux Telegram publics via HTTP Request, extrait et filtre les actualités des dernières 24h, les agrège, puis génère une newsletter HTML synthétisée par Claude Haiku et l'envoie automatiquement par mail chaque matin.",
+      "image": {
+        "src": "assets/img/project-telegram.png",
+        "alt": "Workflow n8n — Newsletter Telegram"
+      },
+      "tags": ["n8n", "Telegram", "HTTP Request", "Claude Haiku", "Gmail"],
+      "github_url": "https://github.com/99Jared9/newsletter-fondamentale-automatique",
+      "links": [
+        { "label": "PDF explicatif", "href": "rapport-07.pdf", "class": "btn-dl", "download": true, "icon": "download" },
+        { "label": "Workflow JSON", "href": "Newsletter_Fondamentale_Automatique_Telegram.json", "class": "btn-dl-json", "download": true, "icon": "download" },
+        { "label": "Voir sur GitHub", "href": "https://github.com/99Jared9/newsletter-fondamentale-automatique", "class": "btn-gh", "external": true, "icon": "github" }
+      ]
+    }
+  ]
+};

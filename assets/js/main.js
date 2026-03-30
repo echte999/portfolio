@@ -32,17 +32,12 @@ function loadProjects() {
   var errorEl = document.getElementById('project-error');
   if (!grid) return;
 
-  fetch('data/projects.json')
-    .then(function (r) {
-      if (!r.ok) throw new Error();
-      return r.json();
-    })
-    .then(function (data) {
-      grid.innerHTML = data.projects.map(buildProjectCard).join('');
-    })
-    .catch(function () {
-      if (errorEl) errorEl.removeAttribute('hidden');
-    });
+  if (!window.PROJECTS_DATA || !window.PROJECTS_DATA.projects) {
+    if (errorEl) errorEl.removeAttribute('hidden');
+    return;
+  }
+
+  grid.innerHTML = window.PROJECTS_DATA.projects.map(buildProjectCard).join('');
 }
 
 document.addEventListener('DOMContentLoaded', function () {
