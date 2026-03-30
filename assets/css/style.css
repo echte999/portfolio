@@ -263,7 +263,8 @@
   .badge-ai { background: rgba(0,212,160,0.1); color: var(--accent); border: 1px solid rgba(0,212,160,0.2); }
   .badge-auto { background: rgba(0,135,255,0.1); color: #4da6ff; border: 1px solid rgba(0,135,255,0.2); }
   .badge-tool { background: rgba(180,120,255,0.1); color: #b47aff; border: 1px solid rgba(180,120,255,0.2); }
-  .project-desc { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 16px; }
+  .project-desc { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 8px; }
+  .project-date { color: var(--muted2); font-size: 12px; margin-bottom: 16px; }
   .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
     font-family: var(--mono);

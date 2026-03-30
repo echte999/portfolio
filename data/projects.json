@@ -8,6 +8,7 @@
         "src": "assets/img/project-page-produit.png",
         "alt": "Workflow n8n — Optimiseur Pages Produit Shopify"
       },
+      "lastUpdated": "2025-11-15",
       "tags": ["n8n", "Shopify API", "Claude", "Google Sheets", "SEO"],
       "github_url": "https://github.com/99Jared9/optimisateur-pages-produit-shopify",
       "links": [
@@ -23,6 +24,7 @@
         "src": "assets/img/project-telegram.png",
         "alt": "Workflow n8n — Newsletter Telegram"
       },
+      "lastUpdated": "2025-12-03",
       "tags": ["n8n", "Telegram", "HTTP Request", "Claude Haiku", "Gmail"],
       "github_url": "https://github.com/99Jared9/newsletter-fondamentale-automatique",
       "links": [
