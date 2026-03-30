@@ -22,7 +22,7 @@ function buildProjectCard(p) {
 
   return '<div class="project-card">'
     + '<div class="project-header">'
-    + '<h3 class="project-title"><a href="' + p.github_url + '" target="_blank" rel="noopener noreferrer">' + p.title + '</a></h3>'
+    + '<h3 class="project-title"><a href="' + p.github_url + '" target="_blank" rel="noopener noreferrer">' + p.title + '<span class="sr-only"> (s\'ouvre dans un nouvel onglet)</span></a></h3>'
     + '<span class="project-badge ' + p.badge.class + '">' + p.badge.label + '</span>'
     + '</div>'
     + '<p class="project-desc">' + p.description + '</p>'
@@ -58,10 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (copyBtn) {
     copyBtn.addEventListener('click', function () {
       navigator.clipboard.writeText('contact.9jared99@gmail.com').then(function () {
-        var label = copyBtn.querySelector('.copy-label');
-        label.textContent = 'Copié !';
+        var status = document.getElementById('copy-status');
+        if (status) status.textContent = 'Adresse e-mail copiée !';
         setTimeout(function () {
-          label.textContent = 'contact.9jared99@gmail.com';
+          if (status) status.textContent = '';
         }, 2000);
       });
     });
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      themeBtn.setAttribute('aria-label', next === 'light' ? 'Activer le thème sombre' : 'Activer le thème clair');
     });
   }
 });

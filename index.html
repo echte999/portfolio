@@ -14,8 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#080c10;--bg2:#0d1117;--bg3:#111820;--border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.13);--accent:#00d4a0;--accent2:#0087ff;--text:#e8edf2;--muted:#6b7a8d;--muted2:#3d4a57;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;--nav-bg:rgba(8,12,16,0.85)}
-[data-theme="light"]{--bg:#f0f2f5;--bg2:#e8eaed;--bg3:#dfe1e5;--border:rgba(0,0,0,0.08);--border-h:rgba(0,0,0,0.15);--accent:#0d9373;--accent2:#0087ff;--text:#1a1a1a;--muted:#5a6a7e;--muted2:#8a9ab0;--nav-bg:rgba(255,255,255,0.9)}
+:root{--bg:#080c10;--bg2:#0d1117;--bg3:#111820;--border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.13);--accent:#00d4a0;--accent2:#0087ff;--text:#e8edf2;--muted:#6b7a8d;--muted2:#6a7888;--badge-auto-color:#4da6ff;--badge-tool-color:#b47aff;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;--nav-bg:rgba(8,12,16,0.85)}
+[data-theme="light"]{--bg:#f0f2f5;--bg2:#e8eaed;--bg3:#dfe1e5;--border:rgba(0,0,0,0.08);--border-h:rgba(0,0,0,0.15);--accent:#0b7d61;--accent2:#005fcc;--text:#1a1a1a;--muted:#5a6a7e;--muted2:#4a5a6e;--badge-auto-color:#004aaa;--badge-tool-color:#6b21e8;--nav-bg:rgba(255,255,255,0.9)}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;overflow-x:hidden;transition:background-color .3s,color .3s}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0}
@@ -60,6 +60,7 @@ h1 .dim{color:var(--muted);font-weight:300}
 .delay-3{animation-delay:.3s}
 .delay-4{animation-delay:.4s}
 @media(max-width:640px){nav ul{display:none}h1{font-size:36px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
 <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
@@ -67,13 +68,15 @@ h1 .dim{color:var(--muted);font-weight:300}
 </head>
 <body>
 
+<a href="#hero" class="skip-link">Aller au contenu principal</a>
+
 <div class="glow-orb a" aria-hidden="true"></div>
 <div class="glow-orb b" aria-hidden="true"></div>
 
 <!-- NAV -->
 <nav aria-label="Navigation principale">
   <div class="inner">
-    <span class="logo">jared.dev</span>
+    <a href="#hero" class="logo" aria-label="Jared, retour en haut de page">jared.dev</a>
     <ul>
       <li><a href="#projects">Projets</a></li>
       <li><a href="#reports">Rapports IA</a></li>
@@ -109,25 +112,26 @@ h1 .dim{color:var(--muted);font-weight:300}
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" style="padding: 96px 0 48px;">
+<section id="projects" aria-labelledby="projects-title" style="padding: 96px 0 48px;">
   <div class="wrap">
-    <p class="section-label">02 — Projets</p>
-    <h2>Ce que j'ai construit</h2>
+    <p class="section-label" aria-hidden="true">02 — Projets</p>
+    <h2 id="projects-title">Ce que j'ai construit</h2>
     <p class="reports-intro">
       Quelques livrables réalisés après un mois de pratique sur n8n.
     </p>
     <p class="reports-intro">
       Je me tourne de plus en plus vers Claude Code pour construire des projets plus structurés et autonomes — ce portfolio est un exemple concret de mon apprentissage de Claude Code.
     </p>
-    <div class="project-grid" id="project-grid"></div>
-    <p class="project-error" id="project-error" hidden>Impossible de charger les projets.</p>
+    <div class="project-grid" id="project-grid" aria-live="polite" aria-label="Liste des projets"></div>
+    <p class="project-error" id="project-error" role="alert" hidden>Impossible de charger les projets.</p>
+  </div>
 </section>
 
 <!-- RAPPORTS IA -->
-<section id="reports">
+<section id="reports" aria-labelledby="reports-title">
   <div class="wrap">
-    <p class="section-label">03 — Rapports IA</p>
-    <h2>Formations hebdomadaires</h2>
+    <p class="section-label" aria-hidden="true">03 — Rapports IA</p>
+    <h2 id="reports-title">Formations hebdomadaires</h2>
     <p class="reports-intro">
       Une série de rapports rédigés pour démystifier l'IA et l'automatisation — des LLMs aux workflows n8n, chaque édition est concrète, progressive et immédiatement applicable.
     </p>
@@ -350,18 +354,19 @@ h1 .dim{color:var(--muted);font-weight:300}
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <p class="section-label">04 — Contact</p>
+    <p class="section-label" aria-hidden="true">04 — Contact</p>
     <div class="contact-inner">
-      <h2>Travaillons ensemble</h2>
+      <h2 id="contact-title">Travaillons ensemble</h2>
       <p>Autodidacte passionné par la technologie et l'intelligence artificielle, j'apprends à construire des projets concrets en utilisant les outils les plus avancés du marché. Ce portfolio est lui-même construit avec Claude Code.</p>
       <p>Vous avez un projet d'automatisation, un besoin d'intégration IA, ou vous cherchez quelqu'un pour concevoir des workflows intelligents ? Écrivez-moi.</p>
-      <button data-action="copy-email" class="contact-link" style="cursor:pointer;font-family:inherit;font-size:inherit;text-align:left;">
+      <button data-action="copy-email" class="contact-link" aria-label="Copier l'adresse e-mail" style="cursor:pointer;font-family:inherit;font-size:inherit;text-align:left;">
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
-        <span class="copy-label" aria-live="polite">contact.9jared99@gmail.com</span>
-        <span class="arrow">→</span>
+        <span class="copy-label">contact.9jared99@gmail.com</span>
+        <span class="arrow" aria-hidden="true">→</span>
       </button>
+      <p id="copy-status" class="sr-only" aria-live="polite"></p>
     </div>
   </div>
 </section>
@@ -371,7 +376,7 @@ h1 .dim{color:var(--muted);font-weight:300}
     <p>© 2026 Jared</p>
     <div style="display:flex;align-items:center;gap:16px;">
       <p>Construit avec Claude Code</p>
-      <a href="https://github.com/99Jared9/99Jared9.github.io" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--muted2);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted2)'">
+      <a href="https://github.com/99Jared9/99Jared9.github.io" target="_blank" rel="noopener" class="footer-gh-link" aria-label="Voir le code source sur GitHub (s'ouvre dans un nouvel onglet)">
         <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         GitHub
       </a>
