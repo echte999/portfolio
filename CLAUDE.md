@@ -26,12 +26,16 @@ python -m http.server 8080
 ## Architecture
 
 ```
-index.html          ← tout le contenu, ordre des sections immuable :
-                       Hero → #about → #projects → #reports → #contact
+index.html           ← structure uniquement, ordre des sections immuable :
+                        Hero → #about → #projects → #reports → #contact
 assets/css/style.css ← tous les styles, aucun style inline dans le HTML
-assets/js/main.js   ← JS minimal, ne gérer que ce qui est demandé
-assets/img/         ← images des projets
+assets/js/main.js    ← JS minimal, ne gérer que ce qui est demandé
+assets/img/          ← images des projets
+data/projects.json   ← données des projets (seul fichier à modifier pour
+                        ajouter/modifier un projet) — chargé via fetch()
 ```
+
+⚠️ `fetch()` nécessite un serveur local — ne pas ouvrir `index.html` directement.
 
 Fichiers téléchargeables (`.pdf`, `.json` n8n) → servis depuis la racine.
 
@@ -62,3 +66,4 @@ Le sélecteur `[data-theme="light"]` surcharge toutes ces variables — ne pas t
 
 - **Toggle thème** : bouton `data-action="toggle-theme"`, persistance `localStorage`, script anti-flash dans `<head>` pour appliquer le thème avant le rendu.
 - **Copy email** : bouton `data-action="copy-email"`, feedback visuel 2s.
+- **Chargement projets** : `loadProjects()` fetch `data/projects.json`, génère les cartes via `buildProjectCard()` et les insère dans `#project-grid`. En cas d'erreur, affiche `#project-error`.
