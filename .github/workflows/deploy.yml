@@ -1,0 +1,91 @@
+name: Validate & Deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Vérifie que index.html existe
+        run: test -f index.html
+
+      - name: Vérifie la syntaxe JS
+        run: node --check assets/js/main.js
+
+      - name: Vérifie la syntaxe CSS
+        run: |
+          python3 - <<'EOF'
+          import sys
+          content = open('assets/css/style.css').read()
+          opens = content.count('{')
+          closes = content.count('}')
+          if opens != closes:
+              print(f'CSS : accolades déséquilibrées ({opens} ouvrantes, {closes} fermantes)')
+              sys.exit(1)
+          print(f'CSS OK : {opens} paires d\'accolades')
+          EOF
+
+      - name: Vérifie le HTML
+        run: |
+          python3 - <<'EOF'
+          import sys
+          from html.parser import HTMLParser
+
+          VOID = {'area','base','br','col','embed','hr','img','input',
+                  'link','meta','param','source','track','wbr'}
+
+          class Validator(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.stack = []
+                  self.errors = []
+              def handle_starttag(self, tag, attrs):
+                  if tag not in VOID:
+                      self.stack.append(tag)
+              def handle_endtag(self, tag):
+                  if tag in VOID:
+                      return
+                  if self.stack and self.stack[-1] == tag:
+                      self.stack.pop()
+                  else:
+                      self.errors.append(f'Balise inattendue : </{tag}>')
+
+          v = Validator()
+          v.feed(open('index.html').read())
+          if v.errors:
+              for e in v.errors:
+                  print(e)
+              sys.exit(1)
+          if v.stack:
+              print('Balises non fermées :', v.stack)
+              sys.exit(1)
+          print('HTML OK')
+          EOF
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Déploie sur GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

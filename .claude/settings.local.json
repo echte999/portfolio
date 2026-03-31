@@ -6,7 +6,8 @@
       "Bash(gh auth:*)",
       "Bash(cp \"/c/Users/PC/Downloads/Page Produit \\(3\\).json\" \"/c/Users/PC/AppData/Local/Temp/repo-shopify/workflow.json\")",
       "Bash(cp \"/c/Users/PC/Downloads/Newsletter_Fondamentale_Automatique_Telegram \\(3\\).json\" \"/c/Users/PC/AppData/Local/Temp/repo-newsletter/workflow.json\")",
-      "Bash(python3 -c \":*)"
+      "Bash(python3 -c \":*)",
+      "Bash(gh pr:*)"
     ]
   }
 }
