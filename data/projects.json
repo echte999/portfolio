@@ -1,6 +1,21 @@
 {
   "projects": [
     {
+      "title": "Duplicateur de Boutique Shopify",
+      "badge": { "label": "Outil", "class": "badge-tool" },
+      "description": "Outil Python qui clone intégralement une boutique Shopify d'un compte vers un autre via l'API : produits, collections, pages, articles de blog, menus, politiques, réductions et thème. Maintient une table de correspondance dynamique pour remapper les IDs internes entre les boutiques, et remplace chirurgicalement le domaine source par le domaine cible dans tout le contenu HTML (descriptions, métafields, JSON du thème).",
+      "image": {
+        "src": "assets/img/project-shopify-duplicator.png",
+        "alt": "Duplicateur de boutique Shopify — Python"
+      },
+      "lastUpdated": "2026-05-21",
+      "tags": ["Python", "Shopify API", "Clonage", "Remapping IDs", "Métafields"],
+      "github_url": "https://github.com/echte999/duplicateur-de-boutique-shopify",
+      "links": [
+        { "label": "Voir sur GitHub", "href": "https://github.com/echte999/duplicateur-de-boutique-shopify", "class": "btn-gh", "external": true, "icon": "github" }
+      ]
+    },
+    {
       "title": "Optimiseur de Pages Produit Shopify",
       "badge": { "label": "IA", "class": "badge-ai" },
       "description": "Workflow n8n qui lit une liste de produits depuis Google Sheets, récupère chaque fiche via l'API Shopify, puis génère automatiquement avec Claude 4 éléments SEO distincts : mot-clé principal, balises, description produit et méta description, caractéristiques. Les données sont réinjectées sur Shopify avec des délais pour respecter les limites de l'API.",
@@ -10,10 +25,10 @@
       },
       "lastUpdated": "2025-11-15",
       "tags": ["n8n", "Shopify API", "Claude", "Google Sheets", "SEO"],
-      "github_url": "https://github.com/99Jared9/optimisateur-pages-produit-shopify",
+      "github_url": "https://github.com/echte999/optimisateur-pages-produit-shopify",
       "links": [
         { "label": "Workflow JSON", "href": "Page%20Produit.json", "class": "btn-dl-json", "download": true, "icon": "download" },
-        { "label": "Voir sur GitHub", "href": "https://github.com/99Jared9/optimisateur-pages-produit-shopify", "class": "btn-gh", "external": true, "icon": "github" }
+        { "label": "Voir sur GitHub", "href": "https://github.com/echte999/optimisateur-pages-produit-shopify", "class": "btn-gh", "external": true, "icon": "github" }
       ]
     },
     {
@@ -26,11 +41,11 @@
       },
       "lastUpdated": "2025-12-03",
       "tags": ["n8n", "Telegram", "HTTP Request", "Claude Haiku", "Gmail"],
-      "github_url": "https://github.com/99Jared9/newsletter-fondamentale-automatique",
+      "github_url": "https://github.com/echte999/newsletter-fondamentale-automatique",
       "links": [
         { "label": "PDF explicatif", "href": "rapport-07.pdf", "class": "btn-dl", "download": true, "icon": "download" },
         { "label": "Workflow JSON", "href": "Newsletter_Fondamentale_Automatique_Telegram.json", "class": "btn-dl-json", "download": true, "icon": "download" },
-        { "label": "Voir sur GitHub", "href": "https://github.com/99Jared9/newsletter-fondamentale-automatique", "class": "btn-gh", "external": true, "icon": "github" }
+        { "label": "Voir sur GitHub", "href": "https://github.com/echte999/newsletter-fondamentale-automatique", "class": "btn-gh", "external": true, "icon": "github" }
       ]
     }
   ]
