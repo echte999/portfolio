@@ -41,12 +41,21 @@ function buildProjectCard(p) {
     ? '<a href="' + safeUrl(p.github_url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(p.title) + '<span class="sr-only"> (s\'ouvre dans un nouvel onglet)</span></a>'
     : escapeHtml(p.title);
 
+  const timeSaved = (p.timeSaved && p.timeSaved.value)
+    ? '<p class="project-roi">'
+        + '<svg class="project-roi-icon" aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+        + '<strong>' + escapeHtml(p.timeSaved.value) + '</strong>'
+        + (p.timeSaved.label ? ' <span>' + escapeHtml(p.timeSaved.label) + '</span>' : '')
+      + '</p>'
+    : '';
+
   return '<div class="project-card">'
     + '<div class="project-header">'
     + '<h3 class="project-title">' + titleLink + '</h3>'
     + '<span class="project-badge ' + escapeHtml(p.badge.class) + '">' + escapeHtml(p.badge.label) + '</span>'
     + '</div>'
     + '<p class="project-desc">' + escapeHtml(p.description) + '</p>'
+    + timeSaved
     + (p.lastUpdated ? '<p class="project-date">Mis à jour le ' + formatDate(p.lastUpdated) + '</p>' : '')
     + '<div class="project-img"><img src="' + safeUrl(p.image.src) + '" alt="' + escapeHtml(p.image.alt) + '" loading="lazy"></div>'
     + '<div class="tag-row">' + tags + '</div>'

@@ -155,13 +155,13 @@
     background: var(--accent);
   }
   h1 {
-    font-size: clamp(36px, 7vw, 72px);
+    font-size: clamp(40px, 8vw, 84px);
     font-weight: 600;
     line-height: 1.05;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     margin-bottom: 24px;
   }
-  h1 .dim { color: var(--muted); font-weight: 300; }
+  h1 .dim { color: var(--muted); font-weight: 400; }
   .hero-sub {
     font-size: 17px;
     color: var(--muted);
@@ -267,7 +267,28 @@
   .badge-ai { background: rgba(0,212,160,0.1); color: var(--accent); border: 1px solid rgba(0,212,160,0.2); }
   .badge-auto { background: rgba(0,135,255,0.1); color: var(--badge-auto-color); border: 1px solid rgba(0,135,255,0.2); }
   .badge-tool { background: rgba(180,120,255,0.1); color: var(--badge-tool-color); border: 1px solid rgba(180,120,255,0.2); }
-  .project-desc { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 8px; }
+  .project-desc { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 12px; }
+  .project-roi {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(0, 212, 160, 0.08);
+    border: 1px solid rgba(0, 212, 160, 0.2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .project-roi strong { font-weight: 600; color: var(--accent); }
+  .project-roi span { color: var(--muted); font-weight: 400; }
+  .project-roi-icon { flex-shrink: 0; }
+  [data-theme="light"] .project-roi {
+    background: rgba(11, 125, 97, 0.08);
+    border-color: rgba(11, 125, 97, 0.25);
+  }
   .project-date { color: var(--muted2); font-size: 12px; margin-bottom: 16px; }
   .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
   .tag {
