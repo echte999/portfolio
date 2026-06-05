@@ -20,7 +20,7 @@ function safeUrl(url) {
 
 function formatDate(iso) {
   const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+  return d.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 function buildProjectCard(p) {
@@ -38,7 +38,7 @@ function buildProjectCard(p) {
   }).join('');
 
   const titleLink = p.github_url
-    ? '<a href="' + safeUrl(p.github_url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(p.title) + '<span class="sr-only"> (s\'ouvre dans un nouvel onglet)</span></a>'
+    ? '<a href="' + safeUrl(p.github_url) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(p.title) + '<span class="sr-only"> (opens in a new tab)</span></a>'
     : escapeHtml(p.title);
 
   const timeSaved = (p.timeSaved && p.timeSaved.value)
@@ -56,7 +56,7 @@ function buildProjectCard(p) {
     + '</div>'
     + '<p class="project-desc">' + escapeHtml(p.description) + '</p>'
     + timeSaved
-    + (p.lastUpdated ? '<p class="project-date">Mis à jour le ' + formatDate(p.lastUpdated) + '</p>' : '')
+    + (p.lastUpdated ? '<p class="project-date">Updated ' + formatDate(p.lastUpdated) + '</p>' : '')
     + '<div class="project-img"><img src="' + safeUrl(p.image.src) + '" alt="' + escapeHtml(p.image.alt) + '" loading="lazy"></div>'
     + '<div class="tag-row">' + tags + '</div>'
     + '<div class="project-links">' + links + '</div>'
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const label = copyBtn.querySelector('.copy-label');
       const originalText = label ? label.textContent : '';
       navigator.clipboard.writeText('contact.9jared99@gmail.com').then(function() {
-        if (status) status.textContent = 'Adresse e-mail copiée !';
-        if (label) label.textContent = 'Copié !';
+        if (status) status.textContent = 'Email address copied!';
+        if (label) label.textContent = 'Copied!';
         copyBtn.classList.add('is-copied');
         setTimeout(function() {
           if (status) status.textContent = '';
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
           copyBtn.classList.remove('is-copied');
         }, 2000);
       }).catch(function() {
-        if (status) status.textContent = 'Impossible de copier — adresse : contact.9jared99@gmail.com';
+        if (status) status.textContent = 'Could not copy — address: contact.9jared99@gmail.com';
         setTimeout(function() { if (status) status.textContent = ''; }, 4000);
       });
     });
@@ -110,13 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const themeBtn = document.querySelector('[data-action="toggle-theme"]');
   if (themeBtn) {
     const currentTheme = document.documentElement.getAttribute('data-theme');
-    themeBtn.setAttribute('aria-label', currentTheme === 'light' ? 'Activer le thème sombre' : 'Activer le thème clair');
+    themeBtn.setAttribute('aria-label', currentTheme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
     themeBtn.addEventListener('click', function() {
       const root = document.documentElement;
       const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      themeBtn.setAttribute('aria-label', next === 'light' ? 'Activer le thème sombre' : 'Activer le thème clair');
+      themeBtn.setAttribute('aria-label', next === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
     });
   }
 });

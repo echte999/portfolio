@@ -1,63 +1,63 @@
 {
   "projects": [
     {
-      "title": "Duplicateur de Boutique Shopify",
-      "badge": { "label": "Outil", "class": "badge-tool" },
-      "description": "Outil Python qui clone intégralement une boutique Shopify d'un compte vers un autre via l'API : produits, collections, pages, articles de blog, menus, politiques, réductions et thème. Maintient une table de correspondance dynamique pour remapper les IDs internes entre les boutiques, et remplace chirurgicalement le domaine source par le domaine cible dans tout le contenu HTML (descriptions, métafields, JSON du thème).",
+      "title": "Shopify Store Duplicator",
+      "badge": { "label": "Tool", "class": "badge-tool" },
+      "description": "A Python tool that fully clones a Shopify store from one account to another via the API: products, collections, pages, blog articles, menus, policies, discounts and theme. It maintains a dynamic mapping table to remap internal IDs between stores, and surgically replaces the source domain with the target domain across all HTML content (descriptions, metafields, theme JSON).",
       "timeSaved": {
         "value": "~15h",
-        "label": "économisées par migration de boutique"
+        "label": "saved per store migration"
       },
       "image": {
         "src": "assets/img/project-shopify-duplicator.png",
-        "alt": "Duplicateur de boutique Shopify — Python"
+        "alt": "Shopify store duplicator — Python"
       },
       "lastUpdated": "2026-05-21",
-      "tags": ["Python", "Shopify API", "Clonage", "Remapping IDs", "Métafields"],
+      "tags": ["Python", "Shopify API", "Cloning", "ID remapping", "Metafields"],
       "github_url": "https://github.com/echte999/duplicateur-de-boutique-shopify",
       "links": [
-        { "label": "Voir sur GitHub", "href": "https://github.com/echte999/duplicateur-de-boutique-shopify", "class": "btn-gh", "external": true, "icon": "github" }
+        { "label": "View on GitHub", "href": "https://github.com/echte999/duplicateur-de-boutique-shopify", "class": "btn-gh", "external": true, "icon": "github" }
       ]
     },
     {
-      "title": "Optimiseur de Pages Produit Shopify",
-      "badge": { "label": "IA", "class": "badge-ai" },
-      "description": "Workflow n8n qui lit une liste de produits depuis Google Sheets, récupère chaque fiche via l'API Shopify, puis génère automatiquement avec Claude 4 éléments SEO distincts : mot-clé principal, balises, description produit et méta description, caractéristiques. Les données sont réinjectées sur Shopify avec des délais pour respecter les limites de l'API.",
+      "title": "Shopify Product Page Optimizer",
+      "badge": { "label": "AI", "class": "badge-ai" },
+      "description": "An n8n workflow that reads a list of products from Google Sheets, fetches each one via the Shopify API, then automatically generates 4 distinct SEO elements with Claude: main keyword, tags, product description and meta description, key features. The data is pushed back to Shopify with delays to respect API rate limits.",
       "timeSaved": {
         "value": "~10 min",
-        "label": "économisées par fiche produit"
+        "label": "saved per product page"
       },
       "image": {
         "src": "assets/img/project-page-produit.png",
-        "alt": "Workflow n8n — Optimiseur Pages Produit Shopify"
+        "alt": "n8n workflow — Shopify product page optimizer"
       },
       "lastUpdated": "2025-11-15",
       "tags": ["n8n", "Shopify API", "Claude", "Google Sheets", "SEO"],
       "github_url": "https://github.com/echte999/optimisateur-pages-produit-shopify",
       "links": [
         { "label": "Workflow JSON", "href": "Page%20Produit.json", "class": "btn-dl-json", "download": true, "icon": "download" },
-        { "label": "Voir sur GitHub", "href": "https://github.com/echte999/optimisateur-pages-produit-shopify", "class": "btn-gh", "external": true, "icon": "github" }
+        { "label": "View on GitHub", "href": "https://github.com/echte999/optimisateur-pages-produit-shopify", "class": "btn-gh", "external": true, "icon": "github" }
       ]
     },
     {
-      "title": "Newsletter Fondamentale Automatique",
+      "title": "Automated Market Newsletter",
       "badge": { "label": "Auto", "class": "badge-auto" },
-      "description": "Workflow n8n qui scrape 3 canaux Telegram publics via HTTP Request, extrait et filtre les actualités des dernières 24h, les agrège, puis génère une newsletter HTML synthétisée par Claude Haiku et l'envoie automatiquement par mail chaque matin.",
+      "description": "An n8n workflow that scrapes 3 public Telegram channels via HTTP Request, extracts and filters news from the last 24h, aggregates it, then generates an HTML newsletter summarized by Claude Haiku and sends it automatically by email every morning.",
       "timeSaved": {
         "value": "~25h",
-        "label": "économisées par mois de veille"
+        "label": "saved per month of research"
       },
       "image": {
         "src": "assets/img/project-telegram.png",
-        "alt": "Workflow n8n — Newsletter Telegram"
+        "alt": "n8n workflow — Telegram newsletter"
       },
       "lastUpdated": "2025-12-03",
       "tags": ["n8n", "Telegram", "HTTP Request", "Claude Haiku", "Gmail"],
       "github_url": "https://github.com/echte999/newsletter-fondamentale-automatique",
       "links": [
-        { "label": "PDF explicatif", "href": "rapport-07.pdf", "class": "btn-dl", "download": true, "icon": "download" },
+        { "label": "Explainer PDF", "href": "rapport-07.pdf", "class": "btn-dl", "download": true, "icon": "download" },
         { "label": "Workflow JSON", "href": "Newsletter_Fondamentale_Automatique_Telegram.json", "class": "btn-dl-json", "download": true, "icon": "download" },
-        { "label": "Voir sur GitHub", "href": "https://github.com/echte999/newsletter-fondamentale-automatique", "class": "btn-gh", "external": true, "icon": "github" }
+        { "label": "View on GitHub", "href": "https://github.com/echte999/newsletter-fondamentale-automatique", "class": "btn-gh", "external": true, "icon": "github" }
       ]
     }
   ]
