@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const status = document.getElementById('copy-status');
       const label = copyBtn.querySelector('.copy-label');
       const originalText = label ? label.textContent : '';
-      navigator.clipboard.writeText('contact.9jared99@gmail.com').then(function() {
+      navigator.clipboard.writeText('ja.pavoni@yahoo.com').then(function() {
         if (status) status.textContent = 'Email address copied!';
         if (label) label.textContent = 'Copied!';
         copyBtn.classList.add('is-copied');
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
           copyBtn.classList.remove('is-copied');
         }, 2000);
       }).catch(function() {
-        if (status) status.textContent = 'Could not copy — address: contact.9jared99@gmail.com';
+        if (status) status.textContent = 'Could not copy — address: ja.pavoni@yahoo.com';
         setTimeout(function() { if (status) status.textContent = ''; }, 4000);
       });
     });

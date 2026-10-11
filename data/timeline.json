@@ -99,7 +99,12 @@
         "  permissions set per project"
       ],
       "skill": "Working in a versioned workspace with an agent that has explicit permissions.",
-      "links": []
+      "links": [
+        {
+          "label": "See the full architecture",
+          "href": "#projects"
+        }
+      ]
     },
     {
       "date": "2026-05",
