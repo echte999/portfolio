@@ -118,17 +118,32 @@ function buildTimelineDetail(m, id) {
   detail.id = id;
   detail.hidden = true;
 
-  [['Why', m.why], ['Skill', m.skill]].forEach(function(row) {
-    if (!row[1]) return;
+  function addRow(label, text) {
+    if (!text) return;
     const p = createEl('p');
-    p.appendChild(createEl('span', 'timeline-detail-label', row[0]));
-    p.appendChild(document.createTextNode(row[1]));
+    p.appendChild(createEl('span', 'timeline-detail-label', label));
+    p.appendChild(document.createTextNode(text));
     detail.appendChild(p);
-  });
+  }
+
+  addRow('Why', m.why);
+  if (Array.isArray(m.structure) && m.structure.length) {
+    detail.appendChild(createEl('p', 'timeline-detail-label', 'How it works'));
+    const pre = createEl('pre', 'timeline-structure', m.structure.join('\n'));
+    pre.setAttribute('tabindex', '0');
+    pre.setAttribute('role', 'group');
+    pre.setAttribute('aria-label', 'How it works — ' + m.title);
+    detail.appendChild(pre);
+  }
+  addRow('Skill', m.skill);
 
   const links = (Array.isArray(m.links) ? m.links : []).filter(function(l) { return l && l.label && l.href; });
   if (links.length) {
     const list = createEl('div', 'timeline-links');
+    if (m.linksTitle) {
+      list.classList.add('timeline-links-box');
+      list.appendChild(createEl('p', 'timeline-detail-label', m.linksTitle));
+    }
     links.forEach(function(l) {
       const external = /^https?:/i.test(l.href);
       const a = createEl('a', external ? 'btn-gh' : 'btn-dl', l.label);
