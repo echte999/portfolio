@@ -1,0 +1,106 @@
+{
+  "milestones": [
+    {
+      "date": "A_CONFIRMER",
+      "phase": "foundations",
+      "title": "Explainer PDFs on AI",
+      "why": "I wrote a series of reports on LLMs and AI automation to understand the tools I was using. Writing forced me to check whether I really understood a topic or was only repeating it.",
+      "skill": "Turning a technical subject into a structured document that a non-specialist can follow.",
+      "links": [
+        { "label": "Read the notes", "href": "#reports" }
+      ]
+    },
+    {
+      "date": "2025-11",
+      "phase": "automations",
+      "title": "Shopify Product Page Optimizer",
+      "why": "My first complete workflow: n8n reads a product list, calls Claude and writes the SEO fields back to Shopify. It taught me that the model call is the easy part. Rate limits, input formats and writing results back safely are where the work is.",
+      "skill": "Chaining an LLM with business APIs inside an n8n workflow.",
+      "links": [
+        { "label": "Workflow JSON", "href": "Page%20Produit.json", "download": true },
+        { "label": "GitHub", "href": "https://github.com/echte999/optimisateur-pages-produit-shopify" }
+      ]
+    },
+    {
+      "date": "2025-12",
+      "phase": "automations",
+      "title": "Automated Market Newsletter",
+      "why": "A workflow that collects public Telegram channels every day, filters the last 24 hours and has Claude Haiku write a summary email. I learned to pick a small model for a recurring task and to let a workflow run unattended.",
+      "skill": "Scheduled data collection, filtering and LLM summarization, delivered by email.",
+      "links": [
+        { "label": "Workflow JSON", "href": "Newsletter_Fondamentale_Automatique_Telegram.json", "download": true },
+        { "label": "GitHub", "href": "https://github.com/echte999/newsletter-fondamentale-automatique" }
+      ]
+    },
+    {
+      "date": "2026-05",
+      "phase": "automations",
+      "title": "Shopify Store Duplicator",
+      "why": "A Python tool that clones a whole store through the API. Moving from a visual workflow to code was needed here: internal IDs change between stores, so every reference has to be remapped in the right order.",
+      "skill": "Python tooling against a real API, with ID remapping across dependent resources.",
+      "links": [
+        { "label": "GitHub", "href": "https://github.com/echte999/duplicateur-de-boutique-shopify" }
+      ]
+    },
+    {
+      "date": "2026-05",
+      "dateEnd": "2026-06",
+      "phase": "automations",
+      "title": "First personal agent",
+      "why": "My first agent that works without me at the keyboard: a research task scheduled with GitHub Actions and delivered to Discord, plus a workshop on writing n8n workflows as code. It showed me that an agent is mostly context, rules and a delivery channel.",
+      "skill": "Scheduled agent runs with GitHub Actions and delivery to a chat channel.",
+      "links": []
+    },
+    {
+      "date": "A_CONFIRMER",
+      "phase": "samourai",
+      "title": "SamourAI training",
+      "why": "Until then I learned by trial and error. This training gave me a method: write the rules down, separate sources from notes, and treat an agent setup as something to design and maintain.",
+      "skill": "Moving from experiments to a repeatable, professional way of working with agents.",
+      "links": []
+    },
+    {
+      "date": "2026-07",
+      "dateEnd": "2026-10",
+      "phase": "builder",
+      "title": "Second brain",
+      "why": "An Obsidian vault of more than 750 notes that the agent must search before it answers. Ownership is split in three layers: raw sources that never change, a wiki written by the agent, and my own notes that the agent may not edit. The agent's memory is versioned in git, so every change can be reviewed.",
+      "skill": "Designing a knowledge base an agent can query, with clear rules on who writes what.",
+      "links": []
+    },
+    {
+      "date": "2026-07",
+      "dateEnd": "2026-09",
+      "phase": "builder",
+      "title": "Modular multi-agent harness",
+      "why": "I did not want my setup locked to one tool. A single AGENTS.md file is the source of truth, the logic lives in neutral commands and scripts, and each tool's own folder is reduced to disposable pointers. The same workspace is built to be read by Claude Code, Kimi and Codex.",
+      "skill": "Structuring an agent harness so the tool and the provider can be replaced.",
+      "links": []
+    },
+    {
+      "date": "2026-09",
+      "phase": "builder",
+      "title": "Sub-agents with limited rights",
+      "why": "Two read-only sub-agents: one reads long transcripts on Sonnet, one analyses diffs on Haiku. They prepare the work and never execute it. A smaller model with fewer rights is cheaper, and a mistake costs less.",
+      "skill": "Delegating to sub-agents with least privilege and a model sized for the task.",
+      "links": []
+    },
+    {
+      "date": "2026-09",
+      "dateEnd": "2026-10",
+      "phase": "builder",
+      "title": "Skills for learning C",
+      "why": "Built while learning C for a school curriculum, so that the agent makes me understand instead of handing me the solution. /expliquer42 explains code directly. /lecon42 runs a quiz diagnosis, draws the path, teaches one step at a time and schedules spaced reviews. /debug42 gives three levels of hints at most. /enonce42 quizzes me on the assignment itself.",
+      "skill": "Designing agent commands around a teaching method.",
+      "links": []
+    },
+    {
+      "date": "2026-10",
+      "phase": "builder",
+      "title": "Model swap test bench",
+      "why": "Built an evaluation bench with sealed tasks and a swappable model option, graded by a judge from another model family, to measure and reduce dependence on a single provider. Candidates still run through one harness. Not yet run on a second harness.",
+      "skill": "Evaluating models on my own tasks instead of relying on public benchmarks.",
+      "links": []
+    }
+  ]
+}

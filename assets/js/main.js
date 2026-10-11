@@ -24,7 +24,7 @@ function formatDate(iso) {
 }
 
 function buildProjectCard(p) {
-  if (!p || !p.title || !p.image || !Array.isArray(p.tags) || !Array.isArray(p.links)) return '';
+  if (!p || !p.title || !Array.isArray(p.tags) || !Array.isArray(p.links)) return '';
 
   const tags = p.tags.map(function(t) {
     return '<span class="tag">' + escapeHtml(t) + '</span>';
@@ -57,7 +57,7 @@ function buildProjectCard(p) {
     + '<p class="project-desc">' + escapeHtml(p.description) + '</p>'
     + timeSaved
     + (p.lastUpdated ? '<p class="project-date">Updated ' + formatDate(p.lastUpdated) + '</p>' : '')
-    + '<div class="project-img"><img src="' + safeUrl(p.image.src) + '" alt="' + escapeHtml(p.image.alt) + '" loading="lazy"></div>'
+    + ((p.image && p.image.src) ? '<div class="project-img"><img src="' + safeUrl(p.image.src) + '" alt="' + escapeHtml(p.image.alt) + '" loading="lazy"></div>' : '')
     + '<div class="tag-row">' + tags + '</div>'
     + '<div class="project-links">' + links + '</div>'
     + '</div>';
@@ -82,8 +82,173 @@ function loadProjects() {
     });
 }
 
+const TIMELINE_PHASES = {
+  foundations: 'Foundations',
+  automations: 'Automations',
+  samourai: 'Samouraï',
+  builder: 'Builder'
+};
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function formatMonth(value) {
+  const match = /^(\d{4})-(\d{2})$/.exec(String(value));
+  if (!match || !MONTHS[match[2] - 1]) return '';
+  return MONTHS[match[2] - 1] + ' ' + match[1];
+}
+
+function createEl(tag, className, text) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (text) el.textContent = text;
+  return el;
+}
+
+function buildTimelineDate(m) {
+  const start = formatMonth(m.date);
+  if (!start) return createEl('span', 'timeline-date', 'Date to be confirmed');
+  const end = formatMonth(m.dateEnd);
+  const time = createEl('time', 'timeline-date', end ? start + ' – ' + end : start);
+  time.setAttribute('datetime', m.date);
+  return time;
+}
+
+function buildTimelineDetail(m, id) {
+  const detail = createEl('div', 'timeline-detail');
+  detail.id = id;
+  detail.hidden = true;
+
+  [['Why', m.why], ['Skill', m.skill]].forEach(function(row) {
+    if (!row[1]) return;
+    const p = createEl('p');
+    p.appendChild(createEl('span', 'timeline-detail-label', row[0]));
+    p.appendChild(document.createTextNode(row[1]));
+    detail.appendChild(p);
+  });
+
+  const links = (Array.isArray(m.links) ? m.links : []).filter(function(l) { return l && l.label && l.href; });
+  if (links.length) {
+    const list = createEl('div', 'timeline-links');
+    links.forEach(function(l) {
+      const external = /^https?:/i.test(l.href);
+      const a = createEl('a', external ? 'btn-gh' : 'btn-dl', l.label);
+      a.setAttribute('href', safeUrl(l.href));
+      a.setAttribute('aria-label', l.label + ' — ' + m.title + (external ? ' (opens in a new tab)' : ''));
+      if (l.download) a.setAttribute('download', '');
+      if (external) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+      list.appendChild(a);
+    });
+    detail.appendChild(list);
+  }
+  return detail;
+}
+
+function buildTimelineItem(m, index) {
+  const detailId = 'timeline-detail-' + index;
+  const metaId = 'timeline-meta-' + index;
+  const item = createEl('li', 'timeline-item');
+  item.dataset.phase = m.phase;
+
+  const card = createEl('div', 'timeline-card');
+  const meta = createEl('p', 'timeline-meta');
+  meta.id = metaId;
+  meta.appendChild(buildTimelineDate(m));
+  meta.appendChild(createEl('span', 'timeline-phase', TIMELINE_PHASES[m.phase]));
+
+  const title = createEl('h3', 'timeline-title');
+  const toggle = createEl('button', 'timeline-toggle', m.title);
+  toggle.type = 'button';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-controls', detailId);
+  toggle.setAttribute('aria-describedby', metaId);
+  toggle.appendChild(createEl('span', 'timeline-toggle-icon', '+')).setAttribute('aria-hidden', 'true');
+  title.appendChild(toggle);
+
+  const detail = buildTimelineDetail(m, detailId);
+  toggle.addEventListener('click', function() {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    detail.hidden = open;
+  });
+
+  card.appendChild(meta);
+  card.appendChild(title);
+  card.appendChild(detail);
+  item.appendChild(card);
+  return item;
+}
+
+function filterTimeline(items, phase) {
+  let shown = 0;
+  items.forEach(function(item) {
+    const match = phase === 'all' || item.dataset.phase === phase;
+    item.hidden = !match;
+    if (!match) return;
+    item.classList.toggle('is-right', shown % 2 === 1);
+    shown += 1;
+  });
+  return shown;
+}
+
+function revealTimeline(items) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window) || reducedMotion) return;
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.1 });
+
+  items.forEach(function(item) {
+    item.classList.add('timeline-reveal');
+    observer.observe(item);
+  });
+}
+
+function loadTimeline() {
+  const list = document.getElementById('timeline-list');
+  const errorEl = document.getElementById('timeline-error');
+  const status = document.getElementById('timeline-status');
+  const filters = Array.prototype.slice.call(document.querySelectorAll('.timeline-filter'));
+  if (!list) return;
+
+  fetch('data/timeline.json')
+    .then(function(r) {
+      if (!r.ok) throw new Error();
+      return r.json();
+    })
+    .then(function(data) {
+      if (!Array.isArray(data.milestones)) throw new Error();
+      const items = data.milestones
+        .filter(function(m) { return m && m.title && Object.prototype.hasOwnProperty.call(TIMELINE_PHASES, m.phase); })
+        .map(buildTimelineItem);
+      items.forEach(function(item) { list.appendChild(item); });
+      filterTimeline(items, 'all');
+      revealTimeline(items);
+
+      filters.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filters.forEach(function(b) { b.setAttribute('aria-pressed', String(b === btn)); });
+          const shown = filterTimeline(items, btn.dataset.phase);
+          if (status) status.textContent = btn.textContent + ': ' + shown + (shown === 1 ? ' milestone shown' : ' milestones shown');
+        });
+      });
+    })
+    .catch(function() {
+      filters.forEach(function(btn) { btn.disabled = true; });
+      if (errorEl) errorEl.removeAttribute('hidden');
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   loadProjects();
+  loadTimeline();
 
   const copyBtn = document.querySelector('[data-action="copy-email"]');
   if (copyBtn) {

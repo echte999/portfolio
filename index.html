@@ -115,6 +115,27 @@ h1 .dim{color:var(--muted);font-weight:400}
   </div>
 </section>
 
+<!-- TIMELINE -->
+<section id="timeline" aria-labelledby="timeline-title">
+  <div class="wrap">
+    <p class="section-label" aria-hidden="true">Journey</p>
+    <h2 id="timeline-title">From explainer PDFs to agent harnesses</h2>
+    <p class="reports-intro">
+      How I got here, step by step. Open a milestone to see why I built it and what it taught me.
+    </p>
+    <div class="timeline-filters" role="group" aria-label="Filter milestones by phase">
+      <button type="button" class="timeline-filter" data-phase="all" aria-pressed="true">All</button>
+      <button type="button" class="timeline-filter" data-phase="foundations" aria-pressed="false">Foundations</button>
+      <button type="button" class="timeline-filter" data-phase="automations" aria-pressed="false">Automations</button>
+      <button type="button" class="timeline-filter" data-phase="samourai" aria-pressed="false">Samouraï</button>
+      <button type="button" class="timeline-filter" data-phase="builder" aria-pressed="false">Builder</button>
+    </div>
+    <p id="timeline-status" class="sr-only" aria-live="polite"></p>
+    <ol class="timeline-list" id="timeline-list" role="list"></ol>
+    <p class="project-error" id="timeline-error" role="alert" hidden>Could not load the timeline.</p>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects" aria-labelledby="projects-title">
   <div class="wrap">
