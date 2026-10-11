@@ -20,19 +20,21 @@ python -m http.server 8080
 
 - **Mobile-first obligatoire :** CSS petits écrans d'abord, `min-width: 640px` pour agrandir. **INTERDIT** d'écrire des media queries `max-width`.
 - **Langue du code :** classes CSS, variables JS, attributs HTML → **anglais uniquement**.
-- **Langue du contenu :** textes, labels, boutons, attributs `alt` → **français uniquement**.
+- **Langue du contenu :** textes, labels, boutons, attributs `alt` → **anglais uniquement**.
 - **INTERDIT** d'ajouter des commentaires évidents ou de la prose dans le code.
 
 ## Architecture
 
 ```
 index.html           ← structure uniquement, ordre des sections immuable :
-                        Hero → #about → #projects → #reports → #contact
+                        Hero → #about → #timeline → #projects → #reports → #contact
 assets/css/style.css ← tous les styles, aucun style inline dans le HTML
 assets/js/main.js    ← JS minimal, ne gérer que ce qui est demandé
 assets/img/          ← images des projets
 data/projects.json   ← données des projets (seul fichier à modifier pour
                         ajouter/modifier un projet) — chargé via fetch()
+data/timeline.json   ← données de la timeline (seul fichier à modifier pour
+                        ajouter un jalon) — chargé via fetch()
 ```
 
 ⚠️ `fetch()` nécessite un serveur local — ne pas ouvrir `index.html` directement.
