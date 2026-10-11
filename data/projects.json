@@ -1,64 +1,36 @@
 {
   "projects": [
     {
-      "title": "Shopify Store Duplicator",
+      "title": "Second Brain",
       "badge": { "label": "Tool", "class": "badge-tool" },
-      "description": "A Python tool that fully clones a Shopify store from one account to another via the API: products, collections, pages, blog articles, menus, policies, discounts and theme. It maintains a dynamic mapping table to remap internal IDs between stores, and surgically replaces the source domain with the target domain across all HTML content (descriptions, metafields, theme JSON).",
-      "timeSaved": {
-        "value": "~15h",
-        "label": "saved per store migration"
-      },
-      "image": {
-        "src": "assets/img/project-shopify-duplicator.png",
-        "alt": "Shopify store duplicator — Python"
-      },
-      "lastUpdated": "2026-05-21",
-      "tags": ["Python", "Shopify API", "Cloning", "ID remapping", "Metafields"],
-      "github_url": "https://github.com/echte999/duplicateur-de-boutique-shopify",
-      "links": [
-        { "label": "View on GitHub", "href": "https://github.com/echte999/duplicateur-de-boutique-shopify", "class": "btn-gh", "external": true, "icon": "github" }
-      ]
+      "description": "A vault of more than 750 notes that an agent queries through a search script (brain.mjs). It has three ownership layers: immutable raw sources, a wiki written entirely by the agent, and personal notes written entirely by me. Durable memory is versioned in git. Why: an agent that answers from memory without checking its notes gives wrong answers that nobody notices, so the rule is \"search before you answer\". Skills: knowledge management, search, data-ownership discipline.",
+      "lastUpdated": "2026-10-09",
+      "tags": ["Node.js", "Markdown", "Obsidian", "Git"],
+      "links": []
     },
     {
-      "title": "Shopify Product Page Optimizer",
+      "title": "Modular Multi-Agent Harness",
       "badge": { "label": "AI", "class": "badge-ai" },
-      "description": "An n8n workflow that reads a list of products from Google Sheets, fetches each one via the Shopify API, then automatically generates 4 distinct SEO elements with Claude: main keyword, tags, product description and meta description, key features. The data is pushed back to Shopify with delays to respect API rate limits.",
-      "timeSaved": {
-        "value": "~10 min",
-        "label": "saved per product page"
-      },
-      "image": {
-        "src": "assets/img/project-page-produit.png",
-        "alt": "n8n workflow — Shopify product page optimizer"
-      },
-      "lastUpdated": "2025-11-15",
-      "tags": ["n8n", "Shopify API", "Claude", "Google Sheets", "SEO"],
-      "github_url": "https://github.com/echte999/optimisateur-pages-produit-shopify",
-      "links": [
-        { "label": "Workflow JSON", "href": "Page%20Produit.json", "class": "btn-dl-json", "download": true, "icon": "download" },
-        { "label": "View on GitHub", "href": "https://github.com/echte999/optimisateur-pages-produit-shopify", "class": "btn-gh", "external": true, "icon": "github" }
-      ]
+      "description": "A harness designed to run with Claude Code, Kimi and Codex. Neutral instructions live in AGENTS.md, the single source of truth. Logic lives in commands/ (markdown) and scripts/ (Node, Python). Tool-specific folders are reduced to disposable pointers. Read-only sub-agents run on separate models (Sonnet to read transcripts, Haiku to analyze diffs): they prepare, they never execute. Why: to avoid being stuck if a vendor changes its pricing or terms.",
+      "lastUpdated": "2026-09-08",
+      "tags": ["AGENTS.md", "Claude Code", "Kimi", "Codex", "sub-agents"],
+      "links": []
     },
     {
-      "title": "Automated Market Newsletter",
+      "title": "Model-Swap Evaluation Bench",
       "badge": { "label": "Auto", "class": "badge-auto" },
-      "description": "An n8n workflow that scrapes 3 public Telegram channels via HTTP Request, extracts and filters news from the last 24h, aggregates it, then generates an HTML newsletter summarized by Claude Haiku and sends it automatically by email every morning.",
-      "timeSaved": {
-        "value": "~25h",
-        "label": "saved per month of research"
-      },
-      "image": {
-        "src": "assets/img/project-telegram.png",
-        "alt": "n8n workflow — Telegram newsletter"
-      },
-      "lastUpdated": "2025-12-03",
-      "tags": ["n8n", "Telegram", "HTTP Request", "Claude Haiku", "Gmail"],
-      "github_url": "https://github.com/echte999/newsletter-fondamentale-automatique",
-      "links": [
-        { "label": "Explainer PDF", "href": "rapport-07.pdf", "class": "btn-dl", "download": true, "icon": "download" },
-        { "label": "Workflow JSON", "href": "Newsletter_Fondamentale_Automatique_Telegram.json", "class": "btn-dl-json", "download": true, "icon": "download" },
-        { "label": "View on GitHub", "href": "https://github.com/echte999/newsletter-fondamentale-automatique", "class": "btn-gh", "external": true, "icon": "github" }
-      ]
+      "description": "Sealed tests, versioned in a file: each run happens in a disposable copy of the repository, checks are done by script and by a judge from another model family (Codex), and every run produces a dated report. It takes the model as a parameter. Why: to measure instead of believing, and to question the dependence on Claude Code. Current limit: the bench still launches candidates through Claude Code and has not yet been run on a second harness, so there are no comparison figures to show.",
+      "lastUpdated": "2026-10-09",
+      "tags": ["evaluation", "LLM-as-judge", "Node.js", "reproducibility"],
+      "links": []
+    },
+    {
+      "title": "C Learning Skills",
+      "badge": { "label": "AI", "class": "badge-ai" },
+      "description": "Four agent skills for learning C for a school curriculum through understanding. Lesson: a multiple-choice diagnostic, a graph of the path, one step at a time, spaced repetition. Debug: at most three levels of hints, never the solution up front. Explain: a direct walkthrough of external code. Statement: a quiz on the exercise statement, never the how. Why: learning to understand rather than being handed the solution.",
+      "lastUpdated": "2026-10-05",
+      "tags": ["Claude Code skills", "pedagogy", "spaced repetition", "C"],
+      "links": []
     }
   ]
 }
