@@ -2,7 +2,7 @@
 
 ## Aperçu
 
-Site portfolio statique une seule page — Jared, consultant automatisation & IA.
+Site portfolio statique une seule page — Jared, agents IA souverains et harnais portables.
 
 **INTERDIT :** système de build, bundler, framework JS, gestionnaire de paquets, fichiers supplémentaires non demandés.
 
@@ -27,12 +27,11 @@ python -m http.server 8080
 
 ```
 index.html           ← structure uniquement, ordre des sections immuable :
-                        Hero → #about → #timeline → #projects → #reports → #contact
+                        Hero → #timeline → #projects → #reports → #contact
+                        (#projects = schéma d'architecture du harnais, écrit en HTML)
 assets/css/style.css ← tous les styles, aucun style inline dans le HTML
 assets/js/main.js    ← JS minimal, ne gérer que ce qui est demandé
 assets/img/          ← images des projets
-data/projects.json   ← données des projets (seul fichier à modifier pour
-                        ajouter/modifier un projet) — chargé via fetch()
 data/timeline.json   ← données de la timeline (seul fichier à modifier pour
                         ajouter un jalon) — chargé via fetch()
 ```
@@ -46,21 +45,27 @@ Fichiers téléchargeables (`.pdf`, `.json` n8n) → servis depuis la racine.
 ## Variables CSS (ne pas modifier sans raison)
 
 ```css
---bg: #080c10    --bg2: #0d1117    --bg3: #111820
---accent: #00d4a0 (vert)    --accent2: #0087ff (bleu)
---text: #e8edf2    --muted: #6b7a8d    --muted2: #3d4a57
---border: rgba(255,255,255,0.07)    --border-h: rgba(255,255,255,0.13)
---nav-bg: rgba(8,12,16,0.85)
+--bg: #12100e    --bg2: #1a1714    --bg3: #231f1b
+--accent: #ff8205 (orange)    --accent2: #e10500 (rouge)
+--c1: #ffd800  --c2: #ffaf00  --c3: #ff8205  --c4: #fa500f  --c5: #e10500 (les 5 bandes Mistral)
+--accent-hover: #ffaf00    --on-accent: #1a0d00 (texte posé sur l'accent)
+--text: #fffaeb    --muted: #a39a8b    --muted2: #9a9082
+--border: rgba(255,250,235,0.08)    --border-h: rgba(255,250,235,0.16)
+--nav-bg: rgba(18,16,14,0.85)
 --mono: 'JetBrains Mono'    --sans: 'Space Grotesk'
 ```
+
+Ces variables existent en double : dans `assets/css/style.css` et dans le CSS critique du `<head>` de `index.html`. Modifier les deux.
 
 Le sélecteur `[data-theme="light"]` surcharge toutes ces variables — ne pas toucher sans raison.
 
 ## Système de design
 
-- Arrière-plan : `.glow-orb.a` (vert, haut-gauche) + `.glow-orb.b` (bleu, bas-droite) + `body::before` (bruit) + `body::after` (grille).
+- Arrière-plan : `.glow-orb.a` (orange, haut-gauche) + `.glow-orb.b` (rouge, bas-droite), animés par `drift` + `body::before` (bruit) + `body::after` (grille).
 - Animations hero : `.fade-up` + `.delay-1` à `.delay-4`.
-- Badges projets : `.badge-ai` (vert) / `.badge-auto` (bleu) / `.badge-tool` (violet).
+- Schéma d'architecture : `.arch` > `.arch-layer` (une couleur `--c1` à `--c5` par couche) > `.arch-node` (bouton) + `.arch-panel` (détail).
+- Apparition au scroll : classe `.reveal`, posée par `revealOnScroll()`.
+- Barre de progression : `.scroll-progress` dans la nav, pilotée par la variable `--scroll`.
 - Bouton `.theme-toggle` avec icônes moon/sun.
 - **INTERDIT** d'utiliser d'autres polices que Space Grotesk et JetBrains Mono.
 
@@ -68,4 +73,6 @@ Le sélecteur `[data-theme="light"]` surcharge toutes ces variables — ne pas t
 
 - **Toggle thème** : bouton `data-action="toggle-theme"`, persistance `localStorage`, script anti-flash dans `<head>` pour appliquer le thème avant le rendu.
 - **Copy email** : bouton `data-action="copy-email"`, feedback visuel 2s.
-- **Chargement projets** : `loadProjects()` fetch `data/projects.json`, génère les cartes via `buildProjectCard()` et les insère dans `#project-grid`. En cas d'erreur, affiche `#project-error`.
+- **Timeline** : `loadTimeline()` fetch `data/timeline.json`. En cas d'erreur, affiche `#timeline-error`.
+- **Schéma d'architecture** : `initArchitecture()` ouvre le panneau du bloc cliqué et ferme les autres.
+- **Défilement** : `initScrollProgress()` (barre), `initNavSpy()` (lien actif, `aria-current`), `revealOnScroll()`.

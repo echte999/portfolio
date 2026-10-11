@@ -9,21 +9,21 @@
 <meta property="og:description" content="AI agent harnesses built to move from one model to another, with an evaluation bench to measure the swap. You keep control of your data, model and vendor.">
 <meta property="og:image" content="assets/img/project-crypto.png">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23080c10'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='serif' font-size='20' font-weight='700' fill='%2300d4a0'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2312100e'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='serif' font-size='20' font-weight='700' fill='%23ff8205'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#080c10;--bg2:#0d1117;--bg3:#111820;--border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.13);--accent:#00d4a0;--accent2:#0087ff;--text:#e8edf2;--muted:#7a8a9e;--muted2:#7a8998;--badge-auto-color:#4da6ff;--badge-tool-color:#b47aff;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;--nav-bg:rgba(8,12,16,0.85)}
-[data-theme="light"]{--bg:#f0f2f5;--bg2:#e8eaed;--bg3:#dfe1e5;--border:rgba(0,0,0,0.08);--border-h:rgba(0,0,0,0.15);--accent:#0b7d61;--accent2:#005fcc;--text:#1a1a1a;--muted:#505f72;--muted2:#445060;--badge-auto-color:#004aaa;--badge-tool-color:#6b21e8;--nav-bg:rgba(255,255,255,0.9)}
+:root{--bg:#12100e;--bg2:#1a1714;--bg3:#231f1b;--border:rgba(255,250,235,0.08);--border-h:rgba(255,250,235,0.16);--accent:#ff8205;--accent-hover:#ffaf00;--on-accent:#1a0d00;--accent2:#e10500;--c1:#ffd800;--c2:#ffaf00;--c3:#ff8205;--c4:#fa500f;--c5:#e10500;--text:#fffaeb;--muted:#a39a8b;--muted2:#9a9082;--badge-auto-color:#ffaf00;--badge-tool-color:#ff6a3d;--mono:'JetBrains Mono',monospace;--sans:'Space Grotesk',sans-serif;--nav-bg:rgba(18,16,14,0.85)}
+[data-theme="light"]{--bg:#fffaeb;--bg2:#fff4d6;--bg3:#f7e9c0;--border:rgba(30,20,0,0.1);--border-h:rgba(30,20,0,0.2);--accent:#b83800;--accent-hover:#9a2f00;--on-accent:#fffaeb;--text:#1e1e1e;--muted:#5e5547;--muted2:#5a5144;--badge-auto-color:#8a4b00;--badge-tool-color:#b00400;--nav-bg:rgba(255,250,235,0.9)}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;overflow-x:hidden;transition:background-color .3s,color .3s}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;opacity:.2;pointer-events:none;z-index:0}
 .glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
-.glow-orb.a{width:500px;height:500px;background:radial-gradient(circle,rgba(0,212,160,.08) 0%,transparent 70%);top:-100px;left:-100px}
-.glow-orb.b{width:400px;height:400px;background:radial-gradient(circle,rgba(0,135,255,.06) 0%,transparent 70%);bottom:10%;right:-80px}
+.glow-orb.a{width:500px;height:500px;background:radial-gradient(circle,rgba(255,130,5,.12) 0%,transparent 70%);top:-100px;left:-100px}
+.glow-orb.b{width:400px;height:400px;background:radial-gradient(circle,rgba(225,5,0,.1) 0%,transparent 70%);bottom:10%;right:-80px}
 .wrap{max-width:820px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background-color .3s,border-color .3s}
 nav .inner{max-width:820px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:52px}
@@ -40,15 +40,15 @@ nav a:hover{color:var(--text)}
 #hero{min-height:100vh;display:flex;align-items:center;padding-top:52px}
 .hero-inner{padding-top:80px;padding-bottom:80px}
 .eyebrow{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--accent)}
+.eyebrow::before{content:'';display:block;width:40px;height:8px;background:linear-gradient(90deg,var(--c1) 0 20%,var(--c2) 20% 40%,var(--c3) 40% 60%,var(--c4) 60% 80%,var(--c5) 80% 100%)}
 h1{font-size:clamp(44px,8vw,84px);font-weight:600;line-height:1.05;letter-spacing:-.035em;margin-bottom:24px}
-h1 .dim{color:var(--muted);font-weight:400}
+h1 .dim{font-weight:400;background:linear-gradient(90deg,var(--c1),var(--c3),var(--c5),var(--c3),var(--c1));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-sub{font-size:17px;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:40px}
 .hero-sub strong{color:var(--text);font-weight:500}
 .cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s;font-family:var(--sans);cursor:pointer;border:none}
-.btn-primary{background:var(--accent);color:#04201a}
-.btn-primary:hover{background:#00edb4;transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
 .btn-ghost{background:transparent;border:1px solid var(--border-h);color:var(--text)}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
 .stack-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:48px}
@@ -78,6 +78,7 @@ h1 .dim{color:var(--muted);font-weight:400}
   <div class="inner">
     <a href="#hero" class="logo" aria-label="Jared, back to top">jared.dev</a>
     <ul>
+      <li><a href="#timeline">Journey</a></li>
       <li><a href="#projects">Work</a></li>
       <li><a href="#reports">AI Notes</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -87,6 +88,7 @@ h1 .dim{color:var(--muted);font-weight:400}
       <svg class="icon-sun" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
   </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
 </nav>
 
 <main>
@@ -116,27 +118,10 @@ h1 .dim{color:var(--muted);font-weight:400}
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" aria-labelledby="about-title">
-  <div class="wrap">
-    <p class="section-label" aria-hidden="true">01 — About</p>
-    <h2 id="about-title">Sovereign by design</h2>
-    <p class="reports-intro">
-      Many agent setups are built inside one vendor's tool. The day that vendor changes its pricing, its terms or its model, the organization finds out how much of its work it does not actually own.
-    </p>
-    <p class="reports-intro">
-      I build the other way round. The rules live in one neutral file, the logic lives in markdown commands and scripts, and each tool only gets a thin pointer to them. The knowledge base stays in plain files under version control, with a clear line between what the agent may write and what it may never touch.
-    </p>
-    <p class="reports-intro">
-      A sealed evaluation bench is built to check the result: same tests, a disposable copy of the repository, a judge from another model family. The goal is that changing model becomes something you measure, not something you hope for.
-    </p>
-  </div>
-</section>
-
 <!-- TIMELINE -->
 <section id="timeline" aria-labelledby="timeline-title">
   <div class="wrap">
-    <p class="section-label" aria-hidden="true">02 — Journey</p>
+    <p class="section-label" aria-hidden="true">01 — Journey</p>
     <h2 id="timeline-title">From n8n workflows to agent harnesses</h2>
     <p class="reports-intro">
       How I got here, step by step. Open a milestone to see why I built it and how it works.
@@ -154,23 +139,217 @@ h1 .dim{color:var(--muted);font-weight:400}
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ARCHITECTURE -->
 <section id="projects" aria-labelledby="projects-title">
   <div class="wrap">
-    <p class="section-label" aria-hidden="true">03 — Work</p>
+    <p class="section-label" aria-hidden="true">02 — Work</p>
     <h2 id="projects-title">What I build</h2>
     <p class="reports-intro">
-      Four parts of one working system: a knowledge base the agent searches before it answers, a harness that runs with several coding agents, a bench to measure a model swap, and a set of teaching skills built on top.
+      One harness, six layers. Each layer is made of plain files in a single git repository, so the coding agent on top can be replaced. Select a block to see what is inside.
     </p>
-    <div class="project-grid" id="project-grid" aria-live="polite" aria-label="Project list"></div>
-    <p class="project-error" id="project-error" role="alert" hidden>Could not load projects.</p>
+    <div class="arch" id="arch">
+
+      <div class="arch-layer">
+        <p class="arch-layer-label">01 · Agents</p>
+        <div class="arch-nodes">
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-agents">
+            <span class="arch-node-title">Claude Code · Kimi · Codex</span>
+            <span class="arch-node-sub">Interchangeable, one thin pointer each</span>
+          </button>
+        </div>
+        <div class="arch-panel" id="arch-panel-agents" hidden>
+          <h3>Interchangeable agents</h3>
+          <p>The harness is designed to run with Claude Code, Kimi or Codex. No logic lives in a tool-specific folder.</p>
+          <ul>
+            <li><code>CLAUDE.md</code> holds one import line that points to <code>AGENTS.md</code>.</li>
+            <li><code>.claude/</code> and <code>.agents/</code> hold one-line pointers to the real commands.</li>
+            <li>These folders are disposable: delete them and they can be regenerated.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <p class="arch-layer-label">02 · Rules</p>
+        <div class="arch-nodes">
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-rules">
+            <span class="arch-node-title">AGENTS.md</span>
+            <span class="arch-node-sub">Single source of truth, read by every agent</span>
+          </button>
+        </div>
+        <div class="arch-panel" id="arch-panel-rules" hidden>
+          <h3>AGENTS.md</h3>
+          <p>One neutral file, five sections. Instructions are changed here and nowhere else.</p>
+          <ol>
+            <li><strong>Description</strong>: who the agent works for and the current goals.</li>
+            <li><strong>Architecture</strong>: what each folder is for.</li>
+            <li><strong>Conventions</strong>: language, tone, note format.</li>
+            <li><strong>Constraints</strong>: search the notes before answering, read memory at session start.</li>
+            <li><strong>Prohibitions</strong>: folders that are never touched, nothing overwritten without approval.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <p class="arch-layer-label">03 · Logic</p>
+        <div class="arch-nodes">
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-commands">
+            <span class="arch-node-title">Commands</span>
+            <span class="arch-node-sub">14 markdown files</span>
+          </button>
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-skills">
+            <span class="arch-node-title">Skills</span>
+            <span class="arch-node-sub">Loaded on demand</span>
+          </button>
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-subagents">
+            <span class="arch-node-title">Sub-agents</span>
+            <span class="arch-node-sub">3, they prepare only</span>
+          </button>
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-scripts">
+            <span class="arch-node-title">Scripts</span>
+            <span class="arch-node-sub">Node.js and Python</span>
+          </button>
+        </div>
+        <div class="arch-panel" id="arch-panel-commands" hidden>
+          <h3>Commands</h3>
+          <p>Each command is a markdown file in <code>commands/</code> that any agent can follow step by step.</p>
+          <ul>
+            <li><strong>Knowledge</strong>: <code>/capture</code> <code>/ingest</code> <code>/update</code> <code>/inventaire</code> <code>/transcrire</code></li>
+            <li><strong>Daily work</strong>: <code>/morning</code> <code>/agenda</code> <code>/commit</code> <code>/bilan-objectifs</code></li>
+            <li><strong>Teaching</strong>: <code>/lecon42</code> <code>/debug42</code> <code>/expliquer42</code> <code>/enonce42</code> <code>/lecon-japonais</code></li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel-skills" hidden>
+          <h3>Skills</h3>
+          <p>A skill is a folder of instructions loaded only when the task needs it. The rest of the time it costs no context.</p>
+          <ul>
+            <li>Example: a news research skill, used by <code>/morning</code>.</li>
+            <li>Commands are also exposed as skill pointers in <code>.agents/skills/</code> for agents that read that folder.</li>
+            <li>Rule: a skill that is not used is deleted, not disabled. In September 2026 the workspace held 120 installed skills, 3 of them in use: it was rebuilt around the few that serve.</li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel-subagents" hidden>
+          <h3>Sub-agents</h3>
+          <p>Smaller models take the bulk reading. They prepare, they never execute: the main agent and I decide.</p>
+          <ul>
+            <li><strong>Transcript reader</strong> (Sonnet): reads a large raw transcript and returns the ideas worth a note.</li>
+            <li><strong>Committer</strong> (Haiku): reads a diff, looks for secrets, proposes a commit message.</li>
+            <li><strong>SVG drawer</strong> (Sonnet): draws one diagram and writes only to a temporary folder.</li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel-scripts" hidden>
+          <h3>Scripts</h3>
+          <p>Anything that must give the same result every time is a script, not a prompt.</p>
+          <ul>
+            <li><code>brain.mjs</code>: keyword search across the vault.</li>
+            <li><code>prime.mjs</code>: runs at session start and prints memory pointers and lessons due for review.</li>
+            <li><code>transcrire.py</code>: turns a video source into a raw transcript.</li>
+            <li><code>banc.mjs</code>: the evaluation bench.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <p class="arch-layer-label">04 · Guardrails</p>
+        <div class="arch-nodes">
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-permissions">
+            <span class="arch-node-title">Permissions</span>
+            <span class="arch-node-sub">Allow, ask, never</span>
+          </button>
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-hooks">
+            <span class="arch-node-title">Hooks</span>
+            <span class="arch-node-sub">Session start</span>
+          </button>
+        </div>
+        <div class="arch-panel" id="arch-panel-permissions" hidden>
+          <h3>Permissions</h3>
+          <p>Three levels, written in a settings file and in <code>AGENTS.md</code>.</p>
+          <ul>
+            <li><strong>Runs without asking</strong>: vault search, <code>git status</code>, <code>git diff</code>, <code>git log</code>, Node and Python scripts.</li>
+            <li><strong>Asks first</strong>: every file edit, every file write, <code>git commit</code>, <code>git push</code>.</li>
+            <li><strong>Never</strong>: raw transcripts, my personal notes, the Obsidian configuration, the archive.</li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel-hooks" hidden>
+          <h3>Hooks</h3>
+          <p>A <code>SessionStart</code> hook runs <code>prime.mjs</code> when a session opens and after each context reset.</p>
+          <ul>
+            <li>It prints the memory index, the size of the vault by domain and the lessons due for review.</li>
+            <li>The agent starts with pointers, not full files: it opens a note only when the task needs it.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <p class="arch-layer-label">05 · Knowledge</p>
+        <div class="arch-nodes">
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-brain">
+            <span class="arch-node-title">Second brain</span>
+            <span class="arch-node-sub">760 notes, searched first</span>
+          </button>
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-memory">
+            <span class="arch-node-title">Durable memory</span>
+            <span class="arch-node-sub">Versioned in git</span>
+          </button>
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-dashboard">
+            <span class="arch-node-title">Dashboard</span>
+            <span class="arch-node-sub">Graph view</span>
+          </button>
+        </div>
+        <div class="arch-panel" id="arch-panel-brain" hidden>
+          <h3>Second brain</h3>
+          <p>An Obsidian vault of plain markdown. Rule number one: the agent runs a search before any substantial answer, so it does not answer from memory on a topic already in the notes.</p>
+          <ul>
+            <li><code>transcript/</code>: raw sources, immutable.</li>
+            <li><code>wiki/</code>: written entirely by the agent.</li>
+            <li><code>mes-notes/</code>: written entirely by me, never modified by the agent.</li>
+          </ul>
+          <p>One note holds one idea, with YAML frontmatter and links to related notes. Every ingestion adds a line to a log. If two notes disagree, the most recent one wins and the gap is reported.</p>
+        </div>
+        <div class="arch-panel" id="arch-panel-memory" hidden>
+          <h3>Durable memory</h3>
+          <p>Facts that must survive between sessions: decisions, project status, working preferences.</p>
+          <ul>
+            <li>One fact per note, in a folder under version control.</li>
+            <li>An index file is read at session start, the notes are opened when useful.</li>
+            <li>On an important change the agent proposes an update and writes it after approval.</li>
+          </ul>
+        </div>
+        <div class="arch-panel" id="arch-panel-dashboard" hidden>
+          <h3>Dashboard</h3>
+          <p>A small Node.js server that scans the vault live and shows it as a graph in the browser. No build step, no database.</p>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <p class="arch-layer-label">06 · Measure</p>
+        <div class="arch-nodes">
+          <button type="button" class="arch-node" aria-expanded="false" aria-controls="arch-panel-bench">
+            <span class="arch-node-title">Evaluation bench</span>
+            <span class="arch-node-sub">Sealed tests, model as a parameter</span>
+          </button>
+        </div>
+        <div class="arch-panel" id="arch-panel-bench" hidden>
+          <h3>Evaluation bench</h3>
+          <p>Built to measure a model swap instead of guessing.</p>
+          <ol>
+            <li>The tests live in one versioned file. The bench stores a SHA-256 fingerprint and refuses to run if the tests or the judge prompt changed since they were frozen.</li>
+            <li>Each run happens in a disposable copy of the repository, inside a sandbox.</li>
+            <li>Factual checks are done by script (which file changed, which command ran). Judgment checks go to a judge from another model family (Codex).</li>
+            <li>Each test runs 5 times and every bench run writes a dated report.</li>
+          </ol>
+          <p>Two families of tests: <strong>signature</strong> tests check that a skill behaves as designed, <strong>canary</strong> tests are traps, such as a request to edit a protected file.</p>
+          <p><strong>Current limit</strong>: the bench still launches candidates through Claude Code and has not yet been run on a second harness, so there are no comparison figures to show.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <!-- RAPPORTS IA -->
 <section id="reports" aria-labelledby="reports-title">
   <div class="wrap">
-    <p class="section-label" aria-hidden="true">04 — AI Notes</p>
+    <p class="section-label" aria-hidden="true">03 — AI Notes</p>
     <h2 id="reports-title">Resources & deep dives</h2>
     <p class="reports-intro">
       Background reading on LLMs, agents, context engineering and automation.
@@ -396,7 +575,7 @@ h1 .dim{color:var(--muted);font-weight:400}
 <!-- CONTACT -->
 <section id="contact" aria-labelledby="contact-title">
   <div class="wrap">
-    <p class="section-label" aria-hidden="true">05 — Contact</p>
+    <p class="section-label" aria-hidden="true">04 — Contact</p>
     <div class="contact-inner">
       <h2 id="contact-title">Let's work together</h2>
       <p>I design and build agent harnesses that organizations keep control of: harness design, a knowledge base the agent searches before it answers, and an evaluation bench to compare models.</p>
