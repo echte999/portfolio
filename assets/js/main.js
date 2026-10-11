@@ -106,7 +106,7 @@ function createEl(tag, className, text) {
 
 function buildTimelineDate(m) {
   const start = formatMonth(m.date);
-  if (!start) return createEl('span', 'timeline-date', 'Date to be confirmed');
+  if (!start) return createEl('span', 'timeline-date', 'Date to be defined');
   const end = formatMonth(m.dateEnd);
   const time = createEl('time', 'timeline-date', end ? start + ' – ' + end : start);
   time.setAttribute('datetime', m.date);

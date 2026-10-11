@@ -1,7 +1,7 @@
 {
   "milestones": [
     {
-      "date": "A_CONFIRMER",
+      "date": "TBD",
       "phase": "foundations",
       "title": "Explainer PDFs on AI",
       "why": "I wrote a series of reports on LLMs and AI automation to understand the tools I was using. Writing forced me to check whether I really understood a topic or was only repeating it.",
@@ -52,7 +52,7 @@
       "links": []
     },
     {
-      "date": "A_CONFIRMER",
+      "date": "TBD",
       "phase": "samourai",
       "title": "SamourAI training",
       "why": "Until then I learned by trial and error. This training gave me a method: write the rules down, separate sources from notes, and treat an agent setup as something to design and maintain.",
