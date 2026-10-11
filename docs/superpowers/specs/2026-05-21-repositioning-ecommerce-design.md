@@ -1,3 +1,5 @@
+Superseded by 2026-10-11-repositioning-sovereign-agents.md
+
 # Repositionnement portfolio — Développeur IA spécialisé e-commerce
 
 **Date** : 2026-05-21
